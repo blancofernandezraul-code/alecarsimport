@@ -9,43 +9,59 @@ const features = [
   { icon: FileCheck, title: "Transparencia total", desc: "Documentación clara en cada paso. Sin sorpresas ni costes ocultos." },
 ];
 
+const SectionHeader = ({ tag, title, subtitle }: { tag: string; title: string; subtitle: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-100px" }}
+    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+    className="text-center mb-20"
+  >
+    <div className="flex items-center justify-center gap-4 mb-6">
+      <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
+      <p className="text-primary text-[11px] uppercase tracking-[0.35em] font-sans font-medium">{tag}</p>
+      <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
+    </div>
+    <h2 className="font-serif text-3xl md:text-5xl lg:text-[3.5rem] font-bold mb-5 leading-tight">{title}</h2>
+    <p className="text-muted-foreground max-w-lg mx-auto text-base md:text-lg font-light">{subtitle}</p>
+  </motion.div>
+);
+
 const WhyAlescars = () => {
   return (
-    <section id="por-que" className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-primary text-sm uppercase tracking-[0.25em] mb-4 font-sans">Confianza y calidad</p>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4">¿Por qué elegir Alescars?</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-lg">Tu importador de confianza con un servicio integral diseñado para ti.</p>
-        </motion.div>
+    <section id="por-que" className="py-24 md:py-36 bg-background grain-overlay relative">
+      <div className="container mx-auto px-4 relative z-10">
+        <SectionHeader
+          tag="Confianza y calidad"
+          title="¿Por qué elegir Alescars?"
+          subtitle="Tu importador de confianza con un servicio integral diseñado para ti."
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-card border border-border rounded-lg p-8 hover:border-primary/40 transition-all duration-500 hover:shadow-glow"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
+              className="luxury-card bg-card border border-border rounded-lg p-8 md:p-10 group"
             >
-              <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors duration-300">
-                <f.icon className="w-6 h-6 text-primary" />
+              <div className="w-12 h-12 rounded bg-primary/8 border border-primary/10 flex items-center justify-center mb-6 group-hover:border-primary/30 group-hover:shadow-glow transition-all duration-700">
+                <f.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
               </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">{f.title}</h3>
+              <h3 className="font-serif text-lg md:text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-500">{f.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Section divider */}
+      <div className="section-divider absolute bottom-0 left-0" />
     </section>
   );
 };
 
+export { SectionHeader };
 export default WhyAlescars;
