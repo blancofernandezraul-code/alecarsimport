@@ -15,49 +15,58 @@ const SectionHeader = ({ tag, title, subtitle }: { tag: string; title: string; s
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-    className="text-center mb-20"
+    className="text-center mb-16 md:mb-24"
   >
-    <div className="flex items-center justify-center gap-4 mb-6">
-      <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
-      <p className="text-primary text-[11px] uppercase tracking-[0.35em] font-sans font-medium">{tag}</p>
-      <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
+    <div className="flex items-center justify-center gap-3 mb-5">
+      <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+      <span className="text-primary text-[10px] uppercase tracking-[0.4em] font-semibold">{tag}</span>
+      <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
     </div>
     <h2 className="font-serif text-3xl md:text-5xl lg:text-[3.5rem] font-bold mb-5 leading-tight">{title}</h2>
-    <p className="text-muted-foreground max-w-lg mx-auto text-base md:text-lg font-light">{subtitle}</p>
+    <p className="text-muted-foreground max-w-md mx-auto text-base md:text-lg font-light leading-relaxed">{subtitle}</p>
   </motion.div>
 );
 
 const WhyAlescars = () => {
   return (
-    <section id="por-que" className="py-24 md:py-36 bg-background grain-overlay relative">
+    <section id="por-que" className="py-24 md:py-36 bg-background grain-overlay relative overflow-hidden">
+
+      {/* Glow de fondo decorativo */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeader
           tag="Confianza y calidad"
           title="¿Por qué elegir Alescars?"
-          subtitle="Tu importador de confianza con un servicio integral diseñado para ti."
+          subtitle="Tu importador de confianza. Un servicio integral pensado para que no tengas que preocuparte de nada."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-              className="luxury-card bg-card border border-border rounded-lg p-8 md:p-10 group"
+              className="group relative bg-card border border-border/60 rounded-xl p-7 md:p-9 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden"
             >
-              <div className="w-12 h-12 rounded bg-primary/8 border border-primary/10 flex items-center justify-center mb-6 group-hover:border-primary/30 group-hover:shadow-glow transition-all duration-700">
+              {/* Shine en hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
+
+              <div className="w-11 h-11 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center mb-6 group-hover:border-primary/40 group-hover:bg-primary/12 group-hover:shadow-glow transition-all duration-500">
                 <f.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
               </div>
-              <h3 className="font-serif text-lg md:text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-500">{f.title}</h3>
+              <h3 className="font-serif text-lg md:text-xl font-semibold mb-2.5 group-hover:text-primary transition-colors duration-400">{f.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+
+              {/* Línea inferior verde animada */}
+              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/20 group-hover:w-full transition-all duration-500 rounded-b-xl" />
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Section divider */}
       <div className="section-divider absolute bottom-0 left-0" />
     </section>
   );

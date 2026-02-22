@@ -13,20 +13,65 @@ const steps = [
 
 const ProcessTimeline = () => {
   return (
-    <section id="proceso" className="py-24 md:py-36 bg-background grain-overlay relative">
+    <section id="proceso" className="py-24 md:py-36 bg-background grain-overlay relative overflow-hidden">
+
+      {/* Glow decorativo */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/4 rounded-full blur-[130px] pointer-events-none" />
+
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeader
           tag="Paso a paso"
           title="Nuestro proceso"
-          subtitle="De principio a fin, gestionamos todo por ti."
+          subtitle="De principio a fin, gestionamos todo por ti. Sin estrés, sin complicaciones."
         />
 
-        {/* Desktop: connected timeline */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent -translate-x-1/2" />
+        {/* MOBILE: lista vertical con línea continua */}
+        <div className="md:hidden relative max-w-sm mx-auto">
+          {/* Línea vertical */}
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
 
-          <div className="space-y-6 md:space-y-0">
+          <div className="space-y-3">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.07, ease: [0.23, 1, 0.32, 1] }}
+                className="flex gap-4 pl-1"
+              >
+                {/* Dot + icon */}
+                <div className="flex flex-col items-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center z-10 relative">
+                    <step.icon className="w-4.5 h-4.5 text-primary" strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                {/* Contenido */}
+                <div className="flex-1 bg-card border border-border/60 rounded-xl p-4 mb-1 relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/10 group-hover:w-full transition-all duration-500 rounded-b-xl" />
+                  <div className="flex items-center justify-between mb-1.5">
+                    <h3 className="font-serif text-base font-semibold">{step.title}</h3>
+                    <span className="text-[9px] text-primary bg-primary/8 border border-primary/15 px-2 py-0.5 rounded-full font-medium tracking-wider uppercase shrink-0 ml-2">
+                      {step.time}
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                  {/* Número de paso */}
+                  <span className="absolute top-3 right-3 font-serif text-2xl font-bold text-border/40 leading-none select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* DESKTOP: timeline alternado */}
+        <div className="hidden md:block relative max-w-4xl mx-auto">
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent -translate-x-1/2" />
+
+          <div className="space-y-0">
             {steps.map((step, i) => {
               const isLeft = i % 2 === 0;
               return (
@@ -35,49 +80,52 @@ const ProcessTimeline = () => {
                   initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.7, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
-                  className={`md:flex md:items-center md:gap-8 md:py-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
+                  transition={{ duration: 0.7, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
+                  className={`flex items-center gap-8 py-5 ${isLeft ? "flex-row" : "flex-row-reverse"}`}
                 >
                   {/* Card */}
-                  <div className={`luxury-card flex-1 bg-card border border-border rounded-lg p-7 md:p-8 group ${isLeft ? "md:text-right" : "md:text-left"}`}>
-                    <div className={`flex items-center gap-3 mb-3 ${isLeft ? "md:flex-row-reverse" : ""}`}>
-                      <span className="text-primary/20 font-serif text-3xl font-bold group-hover:text-primary/40 transition-colors duration-700">
+                  <div className={`flex-1 group relative bg-card border border-border/60 rounded-xl p-7 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden ${isLeft ? "text-right" : "text-left"}`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
+                    <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/10 group-hover:w-full transition-all duration-500 rounded-b-xl" />
+
+                    <div className={`flex items-center gap-3 mb-3 ${isLeft ? "flex-row-reverse justify-start" : ""}`}>
+                      <span className="text-border/50 font-serif text-3xl font-bold group-hover:text-primary/30 transition-colors duration-500 select-none">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <div className="w-9 h-9 rounded bg-primary/8 border border-primary/10 flex items-center justify-center group-hover:border-primary/30 group-hover:shadow-glow transition-all duration-700">
-                        <step.icon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                      <div className="w-10 h-10 rounded-xl bg-primary/8 border border-primary/15 flex items-center justify-center group-hover:border-primary/40 group-hover:bg-primary/12 transition-all duration-500">
+                        <step.icon className="w-4.5 h-4.5 text-primary" strokeWidth={1.5} />
                       </div>
                     </div>
-                    <h3 className="font-serif text-lg font-semibold mb-1.5 group-hover:text-primary transition-colors duration-500">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-3">{step.desc}</p>
-                    <span className="inline-block text-[10px] text-primary/80 bg-primary/5 border border-primary/10 px-3 py-1 rounded-full font-sans font-medium tracking-wider uppercase">
+                    <h3 className="font-serif text-lg font-semibold mb-1.5 group-hover:text-primary transition-colors duration-400">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{step.desc}</p>
+                    <span className="inline-block text-[9px] text-primary bg-primary/8 border border-primary/15 px-3 py-1 rounded-full font-medium tracking-wider uppercase">
                       {step.time}
                     </span>
                   </div>
 
-                  {/* Timeline dot (desktop) */}
-                  <div className="hidden md:flex items-center justify-center w-4 h-4 shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-primary/60 ring-4 ring-background" />
+                  {/* Dot central */}
+                  <div className="flex items-center justify-center w-5 h-5 shrink-0 z-10">
+                    <div className="w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-background shadow-glow" />
                   </div>
 
-                  {/* Spacer for the other side */}
-                  <div className="hidden md:block flex-1" />
+                  <div className="flex-1" />
                 </motion.div>
               );
             })}
           </div>
         </div>
 
+        {/* Total */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center mt-14 md:mt-20"
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-primary/20 bg-primary/5">
+          <div className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-primary/25 bg-primary/5 backdrop-blur-sm">
             <span className="text-muted-foreground text-sm">Tiempo orientativo total:</span>
-            <span className="text-primary font-serif font-semibold text-lg">2–6 semanas</span>
+            <span className="text-primary font-serif font-bold text-lg">2–6 semanas</span>
           </div>
         </motion.div>
       </div>
