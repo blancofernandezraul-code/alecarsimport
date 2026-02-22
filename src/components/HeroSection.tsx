@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import heroCar from "@/assets/hero-car.jpg";
+import heroPhone from "@/assets/hero-phone.png";
 
 const HeroSection = () => {
   const ref = useRef<HTMLElement>(null);
@@ -10,32 +11,36 @@ const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const scrollToForm = () => document.querySelector("#formulario")?.scrollIntoView({ behavior: "smooth" });
-  const scrollToNext = () => document.querySelector("#por-que")?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section ref={ref} id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
       {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
+        {/* Móvil */}
+        <img
+          src={heroPhone}
+          alt="Vehículo premium importado desde Alemania"
+          className="block md:hidden w-full h-full object-cover object-center scale-110"
+        />
+        {/* Desktop */}
         <img
           src={heroCar}
           alt="Vehículo premium importado desde Alemania"
-          className="w-full h-full object-cover scale-110"
+          className="hidden md:block w-full h-full object-cover scale-110"
         />
-        {/* Overlay más dramático */}
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/50" />
-        {/* Vignette */}
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)" }} />
       </motion.div>
 
-      {/* Línea verde lateral izquierda — detalle premium */}
+      {/* Línea verde lateral izquierda */}
       <div className="absolute left-0 top-1/4 h-1/2 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-60" />
 
       {/* Content */}
       <motion.div style={{ opacity }} className="relative z-10 container mx-auto text-center px-4 pt-24 md:pt-16">
 
-        {/* Título principal */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,7 +54,6 @@ const HeroSection = () => {
           sin complicaciones.
         </motion.h1>
 
-        {/* Subtítulo más directo */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -60,7 +64,6 @@ const HeroSection = () => {
           <span className="text-white font-medium">Tú solo eliges el coche.</span>
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -69,14 +72,12 @@ const HeroSection = () => {
         >
           <button
             onClick={scrollToForm}
-            className="group relative bg-primary text-primary-foreground w-full sm:w-auto px-10 py-4 rounded text-sm font-bold tracking-widest uppercase overflow-hidden transition-all duration-300 shadow-glow hover:shadow-glow-strong hover:scale-105 flex items-center justify-center gap-2"
+            className="group relative bg-primary text-primary-foreground w-full sm:w-auto px-10 py-4 rounded text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-glow hover:shadow-glow-strong hover:scale-105 flex items-center justify-center gap-2"
           >
             Solicitar búsqueda gratuita
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
         </motion.div>
-
-
       </motion.div>
 
       {/* Scroll indicator */}
