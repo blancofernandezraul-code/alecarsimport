@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ListChecks, Search, ShieldCheck, Handshake, FileText, Truck } from "lucide-react";
+import { SectionHeader } from "./WhyAlescars";
 
 const steps = [
   { icon: ListChecks, title: "Tú eliges", desc: "Marca, modelo, presupuesto y criterios.", time: "Día 1" },
@@ -12,58 +13,76 @@ const steps = [
 
 const ProcessTimeline = () => {
   return (
-    <section id="proceso" className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-primary text-sm uppercase tracking-[0.25em] mb-4 font-sans">Paso a paso</p>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold mb-4">Nuestro proceso</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-lg">De principio a fin, gestionamos todo por ti.</p>
-        </motion.div>
+    <section id="proceso" className="py-24 md:py-36 bg-background grain-overlay relative">
+      <div className="container mx-auto px-4 relative z-10">
+        <SectionHeader
+          tag="Paso a paso"
+          title="Nuestro proceso"
+          subtitle="De principio a fin, gestionamos todo por ti."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative bg-card border border-border rounded-lg p-8 hover:border-primary/40 transition-all duration-500 group"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <span className="text-primary/30 font-serif text-4xl font-bold group-hover:text-primary/50 transition-colors">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <step.icon className="w-5 h-5 text-primary" />
-                </div>
-              </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">{step.title}</h3>
-              <p className="text-muted-foreground text-sm mb-4">{step.desc}</p>
-              <span className="inline-block text-xs text-primary bg-primary/10 px-3 py-1 rounded-full font-sans font-medium">
-                {step.time}
-              </span>
-            </motion.div>
-          ))}
+        {/* Desktop: connected timeline */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Vertical line */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent -translate-x-1/2" />
+
+          <div className="space-y-6 md:space-y-0">
+            {steps.map((step, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.7, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
+                  className={`md:flex md:items-center md:gap-8 md:py-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
+                >
+                  {/* Card */}
+                  <div className={`luxury-card flex-1 bg-card border border-border rounded-lg p-7 md:p-8 group ${isLeft ? "md:text-right" : "md:text-left"}`}>
+                    <div className={`flex items-center gap-3 mb-3 ${isLeft ? "md:flex-row-reverse" : ""}`}>
+                      <span className="text-primary/20 font-serif text-3xl font-bold group-hover:text-primary/40 transition-colors duration-700">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div className="w-9 h-9 rounded bg-primary/8 border border-primary/10 flex items-center justify-center group-hover:border-primary/30 group-hover:shadow-glow transition-all duration-700">
+                        <step.icon className="w-4 h-4 text-primary" strokeWidth={1.5} />
+                      </div>
+                    </div>
+                    <h3 className="font-serif text-lg font-semibold mb-1.5 group-hover:text-primary transition-colors duration-500">{step.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-3">{step.desc}</p>
+                    <span className="inline-block text-[10px] text-primary/80 bg-primary/5 border border-primary/10 px-3 py-1 rounded-full font-sans font-medium tracking-wider uppercase">
+                      {step.time}
+                    </span>
+                  </div>
+
+                  {/* Timeline dot (desktop) */}
+                  <div className="hidden md:flex items-center justify-center w-4 h-4 shrink-0">
+                    <div className="w-2 h-2 rounded-full bg-primary/60 ring-4 ring-background" />
+                  </div>
+
+                  {/* Spacer for the other side */}
+                  <div className="hidden md:block flex-1" />
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-12 text-muted-foreground"
+          className="text-center mt-16"
         >
-          Tiempo orientativo total:{" "}
-          <span className="text-primary font-semibold">2–6 semanas</span>
-        </motion.p>
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-primary/20 bg-primary/5">
+            <span className="text-muted-foreground text-sm">Tiempo orientativo total:</span>
+            <span className="text-primary font-serif font-semibold text-lg">2–6 semanas</span>
+          </div>
+        </motion.div>
       </div>
+
+      <div className="section-divider absolute bottom-0 left-0" />
     </section>
   );
 };
