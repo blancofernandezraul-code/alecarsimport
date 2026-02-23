@@ -12,6 +12,7 @@ import bmw1 from "@/assets/bmw1.jpeg";
 import bmw2 from "@/assets/bmw2.jpeg";
 import bmw3 from "@/assets/bmw3.jpeg";
 import bmw4 from "@/assets/bmw4.jpeg";
+import { useFadeIn } from "@/hooks/UseFadeIn";
 
 type Case = {
   imgs: string[];
@@ -45,7 +46,6 @@ const cases: Case[] = [
   },
 ];
 
-/* ── Mini carousel used inside the card and the lightbox ── */
 const ImageCarousel = ({
   imgs,
   alt,
@@ -56,14 +56,8 @@ const ImageCarousel = ({
   className?: string;
 }) => {
   const [idx, setIdx] = useState(0);
-  const prev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIdx((i) => (i - 1 + imgs.length) % imgs.length);
-  };
-  const next = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIdx((i) => (i + 1) % imgs.length);
-  };
+  const prev = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i - 1 + imgs.length) % imgs.length); };
+  const next = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i + 1) % imgs.length); };
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
@@ -72,35 +66,28 @@ const ImageCarousel = ({
           key={idx}
           src={imgs[idx]}
           alt={`${alt} — foto ${idx + 1}`}
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-full h-full object-cover"
         />
       </AnimatePresence>
 
       {imgs.length > 1 && (
         <>
-          <button
-            onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10"
-          >
+          <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10">
             <ChevronLeft size={14} />
           </button>
-          <button
-            onClick={next}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10"
-          >
+          <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10">
             <ChevronRight size={14} />
           </button>
-          {/* dot indicators */}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
             {imgs.map((_, i) => (
               <button
                 key={i}
                 onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === idx ? "bg-primary w-3" : "bg-white/50"}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? "bg-primary w-3" : "bg-white/50 w-1.5"}`}
               />
             ))}
           </div>
@@ -112,6 +99,8 @@ const ImageCarousel = ({
 
 const CasesGallery = () => {
   const [selected, setSelected] = useState<Case | null>(null);
+  const gridRef = useFadeIn();
+  const btnRef = useFadeIn();
 
   return (
     <section id="casos" className="py-24 md:py-36 bg-card grain-overlay relative">
@@ -122,14 +111,12 @@ const CasesGallery = () => {
           subtitle="Algunos de los vehículos que hemos importado para nuestros clientes."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {cases.map((c, i) => (
-            <motion.div
+            <div
               key={c.model}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
+              data-animate
+              data-delay={String(i + 1) as "1" | "2" | "3"}
               className="luxury-card cursor-pointer bg-background border border-border rounded-lg overflow-hidden group"
               onClick={() => setSelected(c)}
             >
@@ -148,41 +135,37 @@ const CasesGallery = () => {
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed">{c.summary}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-12"
-        >
-          <button className="group relative border border-primary/30 text-primary px-8 py-3.5 rounded text-xs font-semibold tracking-widest uppercase overflow-hidden transition-all duration-500 hover:border-primary/60 hover:shadow-glow">
-            <span className="relative z-10">Ver más casos</span>
-            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </button>
-        </motion.div>
+        <div ref={btnRef} className="text-center mt-12">
+          <div data-animate>
+            <button className="group relative border border-primary/30 text-primary px-8 py-3.5 rounded text-xs font-semibold tracking-widest uppercase overflow-hidden transition-all duration-500 hover:border-primary/60 hover:shadow-glow">
+              <span className="relative z-10">Ver más casos</span>
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox — Framer Motion aquí sí tiene sentido (interacción puntual, no scroll) */}
       <AnimatePresence>
         {selected && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             style={{ background: "hsl(0 0% 0% / 0.92)", backdropFilter: "blur(12px)" }}
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.92, opacity: 0, y: 20 }}
+              initial={{ scale: 0.94, opacity: 0, y: 16 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.92, opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              exit={{ scale: 0.94, opacity: 0, y: 16 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="relative max-w-3xl w-full bg-card border border-border rounded-xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >

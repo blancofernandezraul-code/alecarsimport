@@ -184,3 +184,41 @@
     @apply scale-x-100 origin-left;
   }
 }
+
+/* ── Fade-in animation ─────────────────────────────────────── */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(16px);
+  /* GPU composite-only properties: no layout/paint triggered */
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+[data-animate][data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger via CSS custom property set inline */
+[data-animate][data-delay="1"] { transition-delay: 0.06s; }
+[data-animate][data-delay="2"] { transition-delay: 0.12s; }
+[data-animate][data-delay="3"] { transition-delay: 0.18s; }
+[data-animate][data-delay="4"] { transition-delay: 0.24s; }
+[data-animate][data-delay="5"] { transition-delay: 0.30s; }
+
+/* Slide from left variant (ProcessTimeline mobile) */
+[data-animate="slide-left"] {
+  transform: translateX(-16px);
+}
+[data-animate="slide-left"][data-visible="true"] {
+  transform: translateX(0);
+}
+
+/* Slide from right variant (ProcessTimeline desktop odd) */
+[data-animate="slide-right"] {
+  transform: translateX(16px);
+}
+[data-animate="slide-right"][data-visible="true"] {
+  transform: translateX(0);
+}

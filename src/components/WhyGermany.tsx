@@ -2,6 +2,8 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Wrench, ClipboardCheck, Star, Calendar, CarFront } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
+import { useFadeIn } from "@/hooks/UseFadeIn";
+
 
 const reasons = [
   { icon: CarFront, title: "Mejor estado general", desc: "Menos propietarios y uso más cuidadoso del vehículo." },
@@ -12,19 +14,6 @@ const reasons = [
 ];
 
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      delay: i * 0.06,
-      ease: EASE,
-    },
-  }),
-};
 
 const AnimatedNumber = ({ target }: { target: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -48,9 +37,11 @@ const AnimatedNumber = ({ target }: { target: number }) => {
 };
 
 const WhyGermany = () => {
+  const gridRef = useFadeIn();
+  const statRef = useFadeIn();
+
   return (
     <section id="alemania" className="py-24 md:py-36 bg-card grain-overlay relative overflow-hidden">
-
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -60,20 +51,16 @@ const WhyGermany = () => {
           subtitle="El mercado alemán ofrece los mejores vehículos de Europa, mejor conservados y a mejor precio."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-16 md:mb-24">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-16 md:mb-24">
           {reasons.map((r, i) => (
-            <motion.div
+            <div
               key={r.title}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-40px" }}
-              className="group relative bg-background/50 border border-border/60 rounded-xl p-7 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden flex gap-5 will-change-transform"
+              data-animate
+              data-delay={String(i + 1) as "1" | "2" | "3" | "4" | "5"}
+              className="group relative bg-background/50 border border-border/60 rounded-xl p-7 hover:border-primary/30 transition-colors duration-500 hover:shadow-glow overflow-hidden flex gap-5"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
               <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/20 group-hover:w-full transition-all duration-500 rounded-b-xl" />
-
               <div className="w-10 h-10 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:border-primary/40 group-hover:bg-primary/12 transition-all duration-500">
                 <r.icon className="w-4.5 h-4.5 text-primary" strokeWidth={1.5} />
               </div>
@@ -81,22 +68,15 @@ const WhyGermany = () => {
                 <h3 className="font-serif text-lg font-semibold mb-1.5 group-hover:text-primary transition-colors duration-400">{r.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{r.desc}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Comparativa de edad media */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, ease: EASE }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="relative">
+        {/* Comparativa */}
+        <div ref={statRef} className="max-w-2xl mx-auto">
+          <div data-animate className="relative">
             <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/30 via-primary/5 to-transparent" />
             <div className="relative bg-background rounded-2xl p-10 md:p-14">
-
               <div className="flex items-center justify-center gap-3 mb-10">
                 <div className="h-px w-6 bg-gradient-to-r from-transparent to-primary/60" />
                 <p className="text-primary text-[10px] uppercase tracking-[0.4em] font-semibold">Edad media de los vehículos</p>
@@ -111,13 +91,11 @@ const WhyGermany = () => {
                   <p className="text-[10px] text-muted-foreground mt-3 uppercase tracking-[0.2em]">años</p>
                   <p className="text-sm font-semibold text-foreground mt-1 tracking-wide">Alemania</p>
                 </div>
-
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent" />
                   <span className="text-[10px] text-muted-foreground/40 uppercase tracking-widest">vs</span>
                   <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent" />
                 </div>
-
                 <div className="text-center">
                   <p className="font-serif text-5xl md:text-6xl font-bold text-muted-foreground/40 leading-none">
                     <AnimatedNumber target={14.2} />
@@ -132,7 +110,7 @@ const WhyGermany = () => {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="section-divider absolute bottom-0 left-0" />
