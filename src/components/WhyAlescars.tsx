@@ -1,4 +1,4 @@
-import { useFadeIn } from "@/hooks/UseFadeIn";
+import { useFadeIn } from "@/hooks/useFadeIn";
 import { Search, ShieldCheck, FileCheck, Car, Eye } from "lucide-react";
 
 const features = [

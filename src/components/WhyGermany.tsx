@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Wrench, ClipboardCheck, Star, Calendar, CarFront } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
-import { useFadeIn } from "@/hooks/UseFadeIn";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 
 const reasons = [

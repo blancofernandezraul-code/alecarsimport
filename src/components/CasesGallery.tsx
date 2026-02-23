@@ -12,7 +12,7 @@ import bmw1 from "@/assets/bmw1.jpeg";
 import bmw2 from "@/assets/bmw2.jpeg";
 import bmw3 from "@/assets/bmw3.jpeg";
 import bmw4 from "@/assets/bmw4.jpeg";
-import { useFadeIn } from "@/hooks/UseFadeIn";
+import { useFadeIn } from "@/hooks/useFadeIn";
 
 type Case = {
   imgs: string[];
