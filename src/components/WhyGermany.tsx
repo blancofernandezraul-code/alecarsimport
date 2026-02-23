@@ -11,6 +11,21 @@ const reasons = [
   { icon: Calendar, title: "Mercado más joven", desc: "Renovación más frecuente: acceso a vehículos más recientes a mejor precio." },
 ];
 
+const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: i * 0.06,
+      ease: EASE,
+    },
+  }),
+};
+
 const AnimatedNumber = ({ target }: { target: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -36,7 +51,6 @@ const WhyGermany = () => {
   return (
     <section id="alemania" className="py-24 md:py-36 bg-card grain-overlay relative overflow-hidden">
 
-      {/* Glow decorativo */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -50,11 +64,12 @@ const WhyGermany = () => {
           {reasons.map((r, i) => (
             <motion.div
               key={r.title}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-              className="group relative bg-background/50 border border-border/60 rounded-xl p-7 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden flex gap-5"
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+              className="group relative bg-background/50 border border-border/60 rounded-xl p-7 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden flex gap-5 will-change-transform"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
               <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/20 group-hover:w-full transition-all duration-500 rounded-b-xl" />
@@ -72,10 +87,10 @@ const WhyGermany = () => {
 
         {/* Comparativa de edad media */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: EASE }}
           className="max-w-2xl mx-auto"
         >
           <div className="relative">
@@ -89,7 +104,6 @@ const WhyGermany = () => {
               </div>
 
               <div className="flex items-center justify-center gap-8 md:gap-20">
-                {/* Alemania */}
                 <div className="text-center">
                   <p className="font-serif text-5xl md:text-6xl font-bold text-primary leading-none">
                     <AnimatedNumber target={10.3} />
@@ -98,14 +112,12 @@ const WhyGermany = () => {
                   <p className="text-sm font-semibold text-foreground mt-1 tracking-wide">Alemania</p>
                 </div>
 
-                {/* Divisor */}
                 <div className="flex flex-col items-center gap-2">
                   <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent" />
                   <span className="text-[10px] text-muted-foreground/40 uppercase tracking-widest">vs</span>
                   <div className="w-px h-16 bg-gradient-to-b from-transparent via-border to-transparent" />
                 </div>
 
-                {/* España */}
                 <div className="text-center">
                   <p className="font-serif text-5xl md:text-6xl font-bold text-muted-foreground/40 leading-none">
                     <AnimatedNumber target={14.2} />

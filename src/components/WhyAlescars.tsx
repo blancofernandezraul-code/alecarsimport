@@ -9,12 +9,27 @@ const features = [
   { icon: FileCheck, title: "Transparencia total", desc: "Documentación clara en cada paso. Sin sorpresas ni costes ocultos." },
 ];
 
-const SectionHeader = ({ tag, title, subtitle }: { tag: string; title: string; subtitle: string }) => (
+const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: i * 0.06,
+      ease: EASE,
+    },
+  }),
+};
+
+export const SectionHeader = ({ tag, title, subtitle }: { tag: string; title: string; subtitle: string }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.6, ease: EASE }}
     className="text-center mb-16 md:mb-24"
   >
     <div className="flex items-center justify-center gap-3 mb-5">
@@ -31,13 +46,12 @@ const WhyAlescars = () => {
   return (
     <section id="por-que" className="py-24 md:py-36 bg-background grain-overlay relative overflow-hidden">
 
-      {/* Glow de fondo decorativo */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/4 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeader
           tag="Confianza y calidad"
-          title="¿Por qué elegir Alescars?"
+          title="¿Por qué elegir Alecars?"
           subtitle="Tu importador de confianza. Un servicio integral pensado para que no tengas que preocuparte de nada."
         />
 
@@ -45,13 +59,13 @@ const WhyAlescars = () => {
           {features.map((f, i) => (
             <motion.div
               key={f.title}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-              className="group relative bg-card border border-border/60 rounded-xl p-7 md:p-9 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden"
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }} // ← margen reducido, activa antes
+              className="group relative bg-card border border-border/60 rounded-xl p-7 md:p-9 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden will-change-transform"
             >
-              {/* Shine en hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
 
               <div className="w-11 h-11 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center mb-6 group-hover:border-primary/40 group-hover:bg-primary/12 group-hover:shadow-glow transition-all duration-500">
@@ -60,7 +74,6 @@ const WhyAlescars = () => {
               <h3 className="font-serif text-lg md:text-xl font-semibold mb-2.5 group-hover:text-primary transition-colors duration-400">{f.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
 
-              {/* Línea inferior verde animada */}
               <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/20 group-hover:w-full transition-all duration-500 rounded-b-xl" />
             </motion.div>
           ))}
@@ -72,5 +85,4 @@ const WhyAlescars = () => {
   );
 };
 
-export { SectionHeader };
 export default WhyAlescars;
