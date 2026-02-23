@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { ListChecks, Search, ShieldCheck, Handshake, FileText, Truck } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
 
+const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+
 const steps = [
   { icon: ListChecks, title: "Tú eliges", desc: "Marca, modelo, presupuesto y criterios.", time: "Día 1" },
   { icon: Search, title: "Búsqueda y filtrado", desc: "Localizamos las mejores unidades del mercado alemán.", time: "1–2 semanas" },
@@ -15,7 +17,6 @@ const ProcessTimeline = () => {
   return (
     <section id="proceso" className="py-24 md:py-36 bg-background grain-overlay relative overflow-hidden">
 
-      {/* Glow decorativo */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/4 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -25,29 +26,26 @@ const ProcessTimeline = () => {
           subtitle="De principio a fin, gestionamos todo por ti. Sin estrés, sin complicaciones."
         />
 
-        {/* MOBILE: lista vertical con línea continua */}
+        {/* MOBILE */}
         <div className="md:hidden relative max-w-sm mx-auto">
-          {/* Línea vertical */}
           <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
 
           <div className="space-y-3">
             {steps.map((step, i) => (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: i * 0.07, ease: [0.23, 1, 0.32, 1] }}
-                className="flex gap-4 pl-1"
+                transition={{ duration: 0.45, delay: i * 0.06, ease: EASE }}
+                className="flex gap-4 pl-1 will-change-transform"
               >
-                {/* Dot + icon */}
                 <div className="flex flex-col items-center shrink-0">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center z-10 relative">
                     <step.icon className="w-4.5 h-4.5 text-primary" strokeWidth={1.5} />
                   </div>
                 </div>
 
-                {/* Contenido */}
                 <div className="flex-1 bg-card border border-border/60 rounded-xl p-4 mb-1 relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
                   <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/10 group-hover:w-full transition-all duration-500 rounded-b-xl" />
                   <div className="flex items-center justify-between mb-1.5">
@@ -57,7 +55,6 @@ const ProcessTimeline = () => {
                     </span>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-                  {/* Número de paso */}
                   <span className="absolute top-3 right-3 font-serif text-2xl font-bold text-border/40 leading-none select-none">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -67,7 +64,7 @@ const ProcessTimeline = () => {
           </div>
         </div>
 
-        {/* DESKTOP: timeline alternado */}
+        {/* DESKTOP */}
         <div className="hidden md:block relative max-w-4xl mx-auto">
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent -translate-x-1/2" />
 
@@ -77,13 +74,12 @@ const ProcessTimeline = () => {
               return (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  initial={{ opacity: 0, x: isLeft ? -24 : 24 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.7, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-                  className={`flex items-center gap-8 py-5 ${isLeft ? "flex-row" : "flex-row-reverse"}`}
+                  transition={{ duration: 0.5, delay: i * 0.07, ease: EASE }}
+                  className={`flex items-center gap-8 py-5 will-change-transform ${isLeft ? "flex-row" : "flex-row-reverse"}`}
                 >
-                  {/* Card */}
                   <div className={`flex-1 group relative bg-card border border-border/60 rounded-xl p-7 hover:border-primary/30 transition-all duration-500 hover:shadow-glow overflow-hidden ${isLeft ? "text-right" : "text-left"}`}>
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
                     <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary/80 to-primary/10 group-hover:w-full transition-all duration-500 rounded-b-xl" />
@@ -103,7 +99,6 @@ const ProcessTimeline = () => {
                     </span>
                   </div>
 
-                  {/* Dot central */}
                   <div className="flex items-center justify-center w-5 h-5 shrink-0 z-10">
                     <div className="w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-background shadow-glow" />
                   </div>
@@ -117,10 +112,10 @@ const ProcessTimeline = () => {
 
         {/* Total */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.15, ease: EASE }}
           className="text-center mt-14 md:mt-20"
         >
           <div className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-primary/25 bg-primary/5 backdrop-blur-sm">
