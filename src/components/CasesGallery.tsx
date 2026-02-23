@@ -1,19 +1,117 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, Gauge, ArrowUpRight } from "lucide-react";
+import { X, Calendar, Gauge, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
-import car1 from "@/assets/car-1.jpg";
-import car2 from "@/assets/car-2.jpg";
-import car3 from "@/assets/car-3.jpg";
+import bmwgris1 from "@/assets/bmwgris1.jpeg";
+import bmwgris2 from "@/assets/bmwgris2.jpeg";
+import bmwgris3 from "@/assets/bmwgris3.jpeg";
+import mercedes1 from "@/assets/mercedes1.jpeg";
+import mercedes2 from "@/assets/mercedes2.jpeg";
+import mercedes3 from "@/assets/mercedes3.jpeg";
+import bmw1 from "@/assets/bmw1.jpeg";
+import bmw2 from "@/assets/bmw2.jpeg";
+import bmw3 from "@/assets/bmw3.jpeg";
+import bmw4 from "@/assets/bmw4.jpeg";
 
-const cases = [
-  { img: car1, model: "BMW 530d xDrive", year: "2021", km: "87.400 km", summary: "Importado 12/2025 — revisión en BMW oficial, paquete M Sport." },
-  { img: car2, model: "Mercedes C200 T", year: "2020", km: "147.100 km", summary: "Importado 01/2026 — revisión en Mercedes, historial completo." },
-  { img: car3, model: "Audi A4 Avant 40 TDI", year: "2022", km: "62.300 km", summary: "Importado 02/2026 — un solo propietario, paquete S Line." },
+type Case = {
+  imgs: string[];
+  model: string;
+  year: string;
+  km: string;
+  summary: string;
+};
+
+const cases: Case[] = [
+  {
+    imgs: [bmw1, bmw2, bmw3, bmw4],
+    model: "BMW 116i",
+    year: "2014",
+    km: "152.000 km",
+    summary: "Importado con Paquete Urban y llantas Paquete M. Revisión completa, historial verificado.",
+  },
+  {
+    imgs: [mercedes1, mercedes2, mercedes3],
+    model: "Mercedes C200 T",
+    year: "2015",
+    km: "149.000 km",
+    summary: "Mantenimientos en casa Mercedes, parrilla AMG. Historial completo verificado.",
+  },
+  {
+    imgs: [bmwgris1, bmwgris2, bmwgris3],
+    model: "BMW 116i",
+    year: "2014",
+    km: "150.000 km",
+    summary: "Cadena de distribución nueva y más de 2.500€ en mantenimientos recientes. Listo para muchos kilómetros.",
+  },
 ];
 
+/* ── Mini carousel used inside the card and the lightbox ── */
+const ImageCarousel = ({
+  imgs,
+  alt,
+  className = "",
+}: {
+  imgs: string[];
+  alt: string;
+  className?: string;
+}) => {
+  const [idx, setIdx] = useState(0);
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIdx((i) => (i - 1 + imgs.length) % imgs.length);
+  };
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIdx((i) => (i + 1) % imgs.length);
+  };
+
+  return (
+    <div className={`relative overflow-hidden ${className}`}>
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={idx}
+          src={imgs[idx]}
+          alt={`${alt} — foto ${idx + 1}`}
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          className="w-full h-full object-cover"
+        />
+      </AnimatePresence>
+
+      {imgs.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10"
+          >
+            <ChevronLeft size={14} />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10"
+          >
+            <ChevronRight size={14} />
+          </button>
+          {/* dot indicators */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+            {imgs.map((_, i) => (
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === idx ? "bg-primary w-3" : "bg-white/50"}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
 const CasesGallery = () => {
-  const [selected, setSelected] = useState<typeof cases[0] | null>(null);
+  const [selected, setSelected] = useState<Case | null>(null);
 
   return (
     <section id="casos" className="py-24 md:py-36 bg-card grain-overlay relative">
@@ -35,15 +133,10 @@ const CasesGallery = () => {
               className="luxury-card cursor-pointer bg-background border border-border rounded-lg overflow-hidden group"
               onClick={() => setSelected(c)}
             >
-              <div className="aspect-[4/3] overflow-hidden relative">
-                <img
-                  src={c.img}
-                  alt={c.model}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+              <div className="aspect-[4/3] relative">
+                <ImageCarousel imgs={c.imgs} alt={c.model} className="w-full h-full" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 pointer-events-none">
                   <ArrowUpRight className="w-3.5 h-3.5 text-foreground" />
                 </div>
               </div>
@@ -95,11 +188,13 @@ const CasesGallery = () => {
             >
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300"
+                className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300"
               >
                 <X size={16} />
               </button>
-              <img src={selected.img} alt={selected.model} className="w-full aspect-video object-cover" />
+              <div className="aspect-video">
+                <ImageCarousel imgs={selected.imgs} alt={selected.model} className="w-full h-full" />
+              </div>
               <div className="p-7 md:p-10">
                 <h3 className="font-serif text-2xl md:text-3xl font-bold mb-3">{selected.model}</h3>
                 <div className="flex gap-5 text-xs text-muted-foreground mb-4 uppercase tracking-wider">

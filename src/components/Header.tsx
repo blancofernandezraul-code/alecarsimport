@@ -5,11 +5,11 @@ import logo from "@/assets/logo_transparente.png";
 
 const navLinks = [
   { label: "Inicio", href: "#hero" },
-  { label: "Por qué Alescars", href: "#por-que" },
+  { label: "Por qué Alecars", href: "#por-que" },
   { label: "Alemania", href: "#alemania" },
   { label: "Proceso", href: "#proceso" },
   { label: "Casos reales", href: "#casos" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Contacto", href: "#contacto" }, 
 ];
 
 const Header = () => {

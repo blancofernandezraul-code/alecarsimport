@@ -5,7 +5,7 @@ import { SectionHeader } from "./WhyAlescars";
 const contactLinks = [
   { icon: Mail, label: "Alecarses@gmail.com", href: "mailto:Alecarses@gmail.com" },
   { icon: Phone, label: "+34 633 833 700", href: "tel:+34633833700" },
-  { icon: Instagram, label: "@alescars", href: "https://instagram.com/alescars", external: true },
+  { icon: Instagram, label: "@alecarses", href: "https://instagram.com/alecarses", external: true },
 ];
 
 const ContactSection = () => {
@@ -28,7 +28,7 @@ const ContactSection = () => {
           <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-border/50 via-transparent to-border/50" />
           <div className="relative bg-background rounded-xl p-10 md:p-12">
             <p className="font-serif text-xl font-semibold mb-2 text-center">Raúl Blanco Fernández</p>
-            <p className="text-muted-foreground/50 text-xs text-center uppercase tracking-[0.2em] mb-10">Fundador · Alescars</p>
+            <p className="text-muted-foreground/50 text-xs text-center uppercase tracking-[0.2em] mb-10">Fundador · Alecars</p>
 
             <div className="space-y-4">
               {contactLinks.map((link, i) => (

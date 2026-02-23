@@ -1,4 +1,5 @@
 import { Instagram, Mail, Phone } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const FooterSection = () => {
   const scrollTo = (href: string) => {
@@ -14,7 +15,11 @@ const FooterSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
           {/* Brand */}
           <div>
-            <p className="font-serif text-xl font-bold tracking-[0.15em] mb-4">ALESCARS</p>
+            <img
+              src={logo}
+              alt="Alescars"
+              className="h-12 w-auto object-contain mb-4"
+            />
             <p className="text-muted-foreground/60 text-sm leading-relaxed max-w-xs">
               Tu importador de vehículos premium desde Alemania. Servicio llave en mano con transparencia total.
             </p>
@@ -53,8 +58,8 @@ const FooterSection = () => {
               <a href="tel:+34633833700" className="flex items-center gap-3 text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500">
                 <Phone className="w-3.5 h-3.5 text-primary/50" /> +34 633 833 700
               </a>
-              <a href="https://instagram.com/alescars" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500">
-                <Instagram className="w-3.5 h-3.5 text-primary/50" /> @alescars
+              <a href="https://instagram.com/alecarses" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500">
+                <Instagram className="w-3.5 h-3.5 text-primary/50" /> @alecarses
               </a>
             </div>
           </div>

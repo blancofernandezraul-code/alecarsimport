@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import heroCar from "@/assets/hero-car.jpg";
-import heroPhone from "@/assets/hero-phone.png";
+import heroPhone from "@/assets/hero-phone.jpg";
 
 const HeroSection = () => {
   const ref = useRef<HTMLElement>(null);
