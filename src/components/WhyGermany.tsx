@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Wrench, ClipboardCheck, Star, Calendar, CarFront } from "lucide-react";
+import { Wrench, ClipboardCheck, Star, Calendar, CarFront, ShieldCheck } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
@@ -11,6 +11,7 @@ const reasons = [
   { icon: ClipboardCheck, title: "Inspecciones técnicas estrictas", desc: "La TÜV alemana es una de las más exigentes del mundo." },
   { icon: Star, title: "Más extras de serie", desc: "Techo panorámico, audio premium, paquetes deportivos y llantas superiores." },
   { icon: Calendar, title: "Mercado más joven", desc: "Renovación más frecuente: acceso a vehículos más recientes a mejor precio." },
+  { icon: ShieldCheck, title: "Garantía oficial disponible", desc: "Posibilidad de acceder a garantía oficial del fabricante o garantía ampliada en concesionarios seleccionados." },
 ];
 
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];

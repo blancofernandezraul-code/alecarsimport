@@ -1,12 +1,12 @@
 import { useFadeIn } from "@/hooks/useFadeIn";
-import { Search, ShieldCheck, FileCheck, Car, Eye } from "lucide-react";
-
+import { Search, ShieldCheck, FileCheck, Car, Eye, Scale } from "lucide-react";
 const features = [
   { icon: ShieldCheck, title: "Experiencia en importación", desc: "Años de trayectoria gestionando importaciones desde Alemania con éxito." },
   { icon: Search, title: "Búsqueda personalizada", desc: "Encontramos exactamente el coche que buscas según tus criterios." },
   { icon: Eye, title: "Verificación en concesionario", desc: "Inspección presencial del vehículo antes de la compra." },
   { icon: Car, title: "Servicio llave en mano", desc: "Nos encargamos de todo: compra, transporte, trámites y entrega." },
   { icon: FileCheck, title: "Transparencia total", desc: "Documentación clara en cada paso. Sin sorpresas ni costes ocultos." },
+  { icon: Scale, title: "Asesoramiento legal y fiscal", desc: "Gestión conforme a normativa española y alemana, asegurando una importación segura y sin riesgos." },
 ];
 
 export const SectionHeader = ({ tag, title, subtitle }: { tag: string; title: string; subtitle: string }) => {

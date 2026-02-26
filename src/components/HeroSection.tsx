@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import heroCar from "@/assets/hero-car.jpg";
-import heroPhone from "@/assets/hero-phone.jpg";
+import fondo from "@/assets/fondo.jpg";
 
 const HeroSection = () => {
   const ref = useRef<HTMLElement>(null);
@@ -17,17 +16,10 @@ const HeroSection = () => {
 
       {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
-        {/* Móvil */}
         <img
-          src={heroPhone}
+          src={fondo}
           alt="Vehículo premium importado desde Alemania"
-          className="block md:hidden w-full h-full object-cover object-center scale-110"
-        />
-        {/* Desktop */}
-        <img
-          src={heroCar}
-          alt="Vehículo premium importado desde Alemania"
-          className="hidden md:block w-full h-full object-cover scale-110"
+          className="w-full h-full object-cover object-center scale-110"
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-background" />
