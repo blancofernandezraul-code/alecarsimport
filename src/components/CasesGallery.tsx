@@ -63,12 +63,6 @@ const ImageCarousel = ({
 
   return (
     <div className={`relative overflow-hidden bg-black ${className}`}>
-      {/* Fondo desenfocado con la misma foto: rellena el hueco sin recortar el coche */}
-      <div
-        className="absolute inset-0 bg-center bg-cover scale-110"
-        style={{ backgroundImage: `url(${imgs[idx]})`, filter: "blur(18px) brightness(0.55) saturate(1.1)" }}
-        aria-hidden="true"
-      />
       <AnimatePresence mode="wait">
         <motion.img
           key={idx}
@@ -80,7 +74,8 @@ const ImageCarousel = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          className="relative z-[1] w-full h-full object-contain"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "50% 72%" }}
         />
       </AnimatePresence>
 
