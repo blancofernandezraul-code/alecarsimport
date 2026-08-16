@@ -23,14 +23,14 @@ const HeroSection = () => {
           loading="eager"
           decoding="async"
           fetchPriority="high"
-          style={{ filter: "saturate(0.55) contrast(1.08) brightness(0.9)" }}
+          style={{ filter: "saturate(0.7) contrast(1.05) brightness(1.2)" }}
         />
 
         {/* Velo dorado sutil para unificar el coche con la paleta de marca */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(38 45% 20% / 0.35), transparent 55%)", mixBlendMode: "overlay" }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/50" />
-        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(38 45% 25% / 0.3), transparent 55%)", mixBlendMode: "overlay" }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/35" />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.5) 100%)" }} />
       </motion.div>
 
       {/* Línea dorada lateral izquierda */}
