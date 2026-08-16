@@ -18,16 +18,19 @@ const HeroSection = () => {
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         <img
           src={fondo}
-          alt="Vehículo premium importado desde Alemania"
+          alt="Porsche 911 GT3 RS, vehículo premium importado desde Alemania"
           className="w-full h-full object-cover object-center scale-110"
+          style={{ filter: "saturate(0.55) contrast(1.08) brightness(0.9)" }}
         />
 
+        {/* Velo dorado sutil para unificar el coche con la paleta de marca */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(38 45% 20% / 0.35), transparent 55%)", mixBlendMode: "overlay" }} />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/50" />
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)" }} />
       </motion.div>
 
-      {/* Línea verde lateral izquierda */}
+      {/* Línea dorada lateral izquierda */}
       <div className="absolute left-0 top-1/4 h-1/2 w-[2px] bg-gradient-to-b from-transparent via-primary to-transparent opacity-60" />
 
       {/* Content */}
