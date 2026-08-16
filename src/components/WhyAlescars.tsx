@@ -9,19 +9,29 @@ const features = [
   { icon: Scale, title: "Asesoramiento legal y fiscal", desc: "Gestión conforme a normativa española y alemana, asegurando una importación segura y sin riesgos." },
 ];
 
-export const SectionHeader = ({ tag, title, subtitle }: { tag: string; title: string; subtitle: string }) => {
-  const ref = useFadeIn();
-  return (
-    <div ref={ref} className="text-center mb-16 md:mb-24">
-      <div data-animate className="flex items-center justify-center gap-3 mb-5">
-        <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
-        <span className="text-primary text-[10px] uppercase tracking-[0.4em] font-semibold">{tag}</span>
-        <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+export const SectionHeader = ({
+    tag,
+    title,
+    subtitle,
+    titleClassName,
+  }: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    titleClassName?: string;
+  }) => {
+    const ref = useFadeIn();
+    return (
+      <div ref={ref} className="text-center mb-16 md:mb-24">
+        <div data-animate className="flex items-center justify-center gap-3 mb-5">
+          <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+          <span className="text-primary text-[10px] uppercase tracking-[0.4em] font-semibold">{tag}</span>
+          <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+        </div>
+        <h2 data-animate data-delay="1" className={titleClassName ?? "font-serif text-3xl md:text-5xl lg:text-[3.5rem] font-bold mb-5 leading-tight"}>{title}</h2>
+        <p data-animate data-delay="2" className="text-muted-foreground max-w-md mx-auto text-base md:text-lg font-light leading-relaxed">{subtitle}</p>
       </div>
-      <h2 data-animate data-delay="1" className="font-serif text-3xl md:text-5xl lg:text-[3.5rem] font-bold mb-5 leading-tight">{title}</h2>
-      <p data-animate data-delay="2" className="text-muted-foreground max-w-md mx-auto text-base md:text-lg font-light leading-relaxed">{subtitle}</p>
-    </div>
-  );
+    );
 };
 
 const WhyAlescars = () => {
