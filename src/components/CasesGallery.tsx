@@ -50,27 +50,37 @@ const ImageCarousel = ({
   imgs,
   alt,
   className = "",
+  priority = false,
 }: {
   imgs: string[];
   alt: string;
   className?: string;
+  priority?: boolean;
 }) => {
   const [idx, setIdx] = useState(0);
   const prev = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i - 1 + imgs.length) % imgs.length); };
   const next = (e: React.MouseEvent) => { e.stopPropagation(); setIdx((i) => (i + 1) % imgs.length); };
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden bg-black ${className}`}>
+      {/* Fondo desenfocado con la misma foto: rellena el hueco sin recortar el coche */}
+      <div
+        className="absolute inset-0 bg-center bg-cover scale-110"
+        style={{ backgroundImage: `url(${imgs[idx]})`, filter: "blur(18px) brightness(0.55) saturate(1.1)" }}
+        aria-hidden="true"
+      />
       <AnimatePresence mode="wait">
         <motion.img
           key={idx}
           src={imgs[idx]}
           alt={`${alt} — foto ${idx + 1}`}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="w-full h-full object-cover"
+          loading={priority && idx === 0 ? "eager" : "lazy"}
+          decoding="async"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+          className="relative z-[1] w-full h-full object-contain"
         />
       </AnimatePresence>
 
@@ -121,7 +131,7 @@ const CasesGallery = () => {
               onClick={() => setSelected(c)}
             >
               <div className="aspect-[4/3] relative">
-                <ImageCarousel imgs={c.imgs} alt={c.model} className="w-full h-full" />
+                <ImageCarousel imgs={c.imgs} alt={c.model} className="w-full h-full" priority={i === 0} />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 pointer-events-none">
                   <ArrowUpRight className="w-3.5 h-3.5 text-foreground" />

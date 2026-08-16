@@ -19,6 +19,8 @@ const FooterSection = () => {
               src={logo}
               alt="Alescars"
               className="h-12 w-auto object-contain mb-4"
+              loading="lazy"
+              decoding="async"
             />
             <p className="text-muted-foreground/60 text-sm leading-relaxed max-w-xs">
               Tu importador de vehículos premium desde Alemania. Servicio llave en mano con transparencia total.

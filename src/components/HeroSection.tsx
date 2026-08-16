@@ -20,6 +20,9 @@ const HeroSection = () => {
           src={fondo}
           alt="Porsche 911 GT3 RS, vehículo premium importado desde Alemania"
           className="w-full h-full object-cover object-center scale-110"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           style={{ filter: "saturate(0.55) contrast(1.08) brightness(0.9)" }}
         />
 
