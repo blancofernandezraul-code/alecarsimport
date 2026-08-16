@@ -16,6 +16,8 @@ import { useFadeIn } from "@/hooks/useFadeIn";
 
 type Case = {
   imgs: string[];
+  /** Punto de recorte por foto (mismo orden que imgs). Si falta, usa "50% 60%". */
+  positions?: string[];
   model: string;
   year: string;
   km: string;
@@ -25,6 +27,7 @@ type Case = {
 const cases: Case[] = [
   {
     imgs: [bmw1, bmw2, bmw3, bmw4],
+    positions: ["50% 55%", "50% 40%", "50% 85%", "50% 55%"],
     model: "BMW 116i",
     year: "2014",
     km: "152.000 km",
@@ -48,11 +51,13 @@ const cases: Case[] = [
 
 const ImageCarousel = ({
   imgs,
+  positions,
   alt,
   className = "",
   priority = false,
 }: {
   imgs: string[];
+  positions?: string[];
   alt: string;
   className?: string;
   priority?: boolean;
@@ -75,7 +80,7 @@ const ImageCarousel = ({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
           className="w-full h-full object-cover"
-          style={{ objectPosition: "50% 72%" }}
+          style={{ objectPosition: positions?.[idx] ?? "50% 60%" }}
         />
       </AnimatePresence>
 
@@ -126,7 +131,7 @@ const CasesGallery = () => {
               onClick={() => setSelected(c)}
             >
               <div className="aspect-[4/3] relative">
-                <ImageCarousel imgs={c.imgs} alt={c.model} className="w-full h-full" priority={i === 0} />
+                <ImageCarousel imgs={c.imgs} positions={c.positions} alt={c.model} className="w-full h-full" priority={i === 0} />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 pointer-events-none">
                   <ArrowUpRight className="w-3.5 h-3.5 text-foreground" />
@@ -181,7 +186,7 @@ const CasesGallery = () => {
                 <X size={16} />
               </button>
               <div className="aspect-video">
-                <ImageCarousel imgs={selected.imgs} alt={selected.model} className="w-full h-full" />
+                <ImageCarousel imgs={selected.imgs} positions={selected.positions} alt={selected.model} className="w-full h-full" />
               </div>
               <div className="p-7 md:p-10">
                 <h3 className="font-serif text-2xl md:text-3xl font-bold mb-3">{selected.model}</h3>
