@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle, Check } from "lucide-react";
 import fondo from "@/assets/fondo.jpg";
 
 const HeroSection = () => {
@@ -66,8 +66,9 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.85 }}
-          className="flex justify-center items-center mb-12"
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-5"
         >
+          {/* CTA principal: formulario */}
           <button
             onClick={scrollToForm}
             className="group relative bg-primary text-primary-foreground w-full sm:w-auto px-10 py-4 rounded text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-glow hover:shadow-glow-strong hover:scale-105 flex items-center justify-center gap-2"
@@ -75,6 +76,32 @@ const HeroSection = () => {
             Solicitar búsqueda gratuita
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
+
+          {/* CTA secundario: WhatsApp */}
+          <a
+            href="https://wa.me/34633833700?text=Hola%2C%20vengo%20de%20la%20web%20de%20Alecars%20y%20me%20interesa%20importar%20un%20coche%20desde%20Alemania."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-full sm:w-auto px-10 py-4 rounded text-sm font-bold tracking-widest uppercase border border-white/30 bg-black/30 backdrop-blur-sm text-white hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2"
+          >
+            <MessageCircle className="w-4 h-4" strokeWidth={2} />
+            Escríbenos por WhatsApp
+          </a>
+        </motion.div>
+
+        {/* Frase de confianza */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.05 }}
+          className="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 mb-12 text-white/60 text-xs md:text-sm font-light"
+        >
+          {["Sin compromiso", "Respuesta en menos de 24 h", "Asesoramiento gratuito"].map((t) => (
+            <span key={t} className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+              {t}
+            </span>
+          ))}
         </motion.div>
       </motion.div>
 
