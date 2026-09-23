@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, Gauge, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Calendar, Gauge, ArrowUpRight, ChevronLeft, ChevronRight, PiggyBank, Clock, Quote } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
 import bmwgris1 from "@/assets/bmwgris1.jpeg";
 import bmwgris2 from "@/assets/bmwgris2.jpeg";
@@ -22,6 +22,11 @@ type Case = {
   year: string;
   km: string;
   summary: string;
+  /** Ahorro frente a comprar el mismo coche en España */
+  savings: string;
+  /** Tiempo total hasta la entrega */
+  time: string;
+  review: { text: string; name: string; city?: string };
 };
 
 const cases: Case[] = [
@@ -32,6 +37,13 @@ const cases: Case[] = [
     year: "2014",
     km: "152.000 km",
     summary: "Importado con Paquete Urban y llantas Paquete M. Revisión completa, historial verificado.",
+    savings: "2.000 €",
+    time: "3 semanas",
+    review: {
+      text: "Trato excelente. Todo muy claro, bien explicado y de una forma muy profesional.",
+      name: "Javier F.",
+      city: "Toledo",
+    },
   },
   {
     imgs: [mercedes1, mercedes2, mercedes3],
@@ -39,6 +51,13 @@ const cases: Case[] = [
     year: "2015",
     km: "149.000 km",
     summary: "Mantenimientos en casa Mercedes, parrilla AMG. Historial completo verificado.",
+    savings: "3.000 €",
+    time: "4 semanas",
+    review: {
+      text: "Buscaba un coche que en España no encontraba y con Alecars lo conseguí de forma rápida y segura, gracias a su peritaje completo.",
+      name: "Martín C.",
+      city: "Madrid",
+    },
   },
   {
     imgs: [bmwgris1, bmwgris2, bmwgris3],
@@ -46,6 +65,13 @@ const cases: Case[] = [
     year: "2014",
     km: "150.000 km",
     summary: "Cadena de distribución nueva y más de 2.500€ en mantenimientos recientes. Listo para muchos kilómetros.",
+    savings: "2.500 €",
+    time: "2 semanas",
+    review: {
+      text: "Un coche muy completo, con unos mantenimientos que rara vez se encuentran en España. Impecable.",
+      name: "Miguel Ángel B.",
+      city: "Guadalajara",
+    },
   },
 ];
 
@@ -124,7 +150,7 @@ const CasesGallery = () => {
         <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {cases.map((c, i) => (
             <div
-              key={c.model}
+              key={i}
               data-animate
               data-delay={String(i + 1) as "1" | "2" | "3"}
               className="luxury-card cursor-pointer bg-background border border-border rounded-lg overflow-hidden group"
@@ -144,6 +170,33 @@ const CasesGallery = () => {
                   <span className="flex items-center gap-1.5"><Gauge className="w-3.5 h-3.5 text-primary/60" />{c.km}</span>
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed">{c.summary}</p>
+
+                {/* Resultado para el cliente */}
+                <div className="grid grid-cols-2 gap-3 mt-5">
+                  <div className="rounded border border-primary/20 bg-primary/5 px-3 py-2.5">
+                    <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70 mb-1 flex items-center gap-1.5">
+                      <PiggyBank className="w-3 h-3 text-primary" /> Ahorro vs. España
+                    </p>
+                    <p className="font-sans text-lg font-semibold text-primary leading-none">{c.savings}</p>
+                  </div>
+                  <div className="rounded border border-border bg-card/50 px-3 py-2.5">
+                    <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/70 mb-1 flex items-center gap-1.5">
+                      <Clock className="w-3 h-3 text-primary" /> Entregado en
+                    </p>
+                    <p className="font-sans text-lg font-semibold leading-none">{c.time}</p>
+                  </div>
+                </div>
+
+                {/* Opinión del cliente */}
+                <figure className="mt-5 pt-5 border-t border-border/60">
+                  <Quote className="w-4 h-4 text-primary/50 mb-2" />
+                  <blockquote className="font-serif italic text-base leading-snug text-foreground/90">
+                    "{c.review.text}"
+                  </blockquote>
+                  <figcaption className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground/70">
+                    — {c.review.name}{c.review.city ? ` · ${c.review.city}` : ""}
+                  </figcaption>
+                </figure>
               </div>
             </div>
           ))}
@@ -195,6 +248,20 @@ const CasesGallery = () => {
                   <span className="flex items-center gap-1.5"><Gauge className="w-3.5 h-3.5 text-primary" />{selected.km}</span>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{selected.summary}</p>
+                <div className="flex flex-wrap gap-3 mt-6">
+                  <span className="inline-flex items-center gap-2 rounded border border-primary/20 bg-primary/5 px-4 py-2 text-sm">
+                    <PiggyBank className="w-4 h-4 text-primary" /> Ahorro vs. España: <strong className="text-primary">{selected.savings}</strong>
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded border border-border px-4 py-2 text-sm">
+                    <Clock className="w-4 h-4 text-primary" /> Entregado en <strong>{selected.time}</strong>
+                  </span>
+                </div>
+                <figure className="mt-6 pt-6 border-t border-border/60">
+                  <blockquote className="font-serif italic text-lg md:text-xl leading-snug">"{selected.review.text}"</blockquote>
+                  <figcaption className="mt-3 text-xs uppercase tracking-[0.15em] text-muted-foreground/70">
+                    — {selected.review.name}{selected.review.city ? ` · ${selected.review.city}` : ""}
+                  </figcaption>
+                </figure>
               </div>
             </motion.div>
           </motion.div>
