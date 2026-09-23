@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, MessageCircle, Check, Sparkles } from "lucide-react";
+import { Send, MessageCircle, Check, Sparkles, Loader2 } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
 
 const extras = ["Techo panorámico", "Paquete deportivo", "Audio premium", "Otros"];
@@ -9,6 +9,8 @@ const RequestForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   const toggleExtra = (extra: string) => {
     setSelectedExtras((prev) =>
@@ -16,9 +18,34 @@ const RequestForm = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Envío del formulario al correo de Alecars mediante FormSubmit (gratuito, sin servidor)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    data.append("Extras deseados", selectedExtras.length ? selectedExtras.join(", ") : "Ninguno");
+    data.append("_subject", `Nueva solicitud web: ${data.get("Marca") || ""} ${data.get("Modelo") || ""}`.trim());
+    data.append("_template", "table");
+    data.append("_captcha", "false");
+
+    setSending(true);
+    setError(false);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/Alecarses@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      if (!res.ok) throw new Error("Error de envío");
+      form.reset();
+      setSelectedExtras([]);
+      setPrivacyAccepted(false);
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -76,38 +103,40 @@ const RequestForm = () => {
         >
           <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-border/50 via-transparent to-border/50" />
           <div className="relative bg-card rounded-xl p-7 md:p-12">
+            {/* Campo trampa anti-spam: invisible para personas */}
+            <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Nombre completo *</label>
-                <input required type="text" className={inputClasses} placeholder="Tu nombre" />
+                <input required type="text" className={inputClasses} name="Nombre" placeholder="Tu nombre" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Email *</label>
-                <input required type="email" className={inputClasses} placeholder="tu@email.com" />
+                <input required type="email" className={inputClasses} name="email" placeholder="tu@email.com" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Teléfono *</label>
-                <input required type="tel" className={inputClasses} placeholder="+34 600 000 000" />
+                <input required type="tel" className={inputClasses} name="Teléfono" placeholder="+34 600 000 000" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Marca deseada *</label>
-                <input required type="text" className={inputClasses} placeholder="BMW, Mercedes, Audi..." />
+                <input required type="text" className={inputClasses} name="Marca" placeholder="BMW, Mercedes, Audi..." />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Modelo / Variante</label>
-                <input type="text" className={inputClasses} placeholder="Serie 3, Clase C..." />
+                <input type="text" className={inputClasses} name="Modelo" placeholder="Serie 3, Clase C..." />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Presupuesto (€) *</label>
-                <input required type="text" className={inputClasses} placeholder="25.000 – 35.000" />
+                <input required type="text" className={inputClasses} name="Presupuesto" placeholder="25.000 – 35.000" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Año mínimo</label>
-                <input type="number" min="2000" max="2026" className={inputClasses} placeholder="2019" />
+                <input type="number" min="2000" max="2026" className={inputClasses} name="Año mínimo" placeholder="2019" />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Ciudad de entrega</label>
-                <input type="text" className={inputClasses} placeholder="Madrid, Barcelona..." />
+                <input type="text" className={inputClasses} name="Ciudad de entrega" placeholder="Madrid, Barcelona..." />
               </div>
             </div>
 
@@ -135,7 +164,7 @@ const RequestForm = () => {
             {/* Comments */}
             <div className="mt-7 flex flex-col gap-2">
               <label className="text-[11px] text-muted-foreground font-sans uppercase tracking-[0.15em]">Comentarios adicionales</label>
-              <textarea rows={3} className={`${inputClasses} resize-none`} placeholder="Cualquier detalle adicional..." />
+              <textarea rows={3} className={`${inputClasses} resize-none`} name="Comentarios" placeholder="Cualquier detalle adicional..." />
             </div>
 
             {/* Privacy */}
@@ -156,15 +185,25 @@ const RequestForm = () => {
               </p>
             </div>
 
+            {error && (
+              <p className="mt-6 text-sm text-red-400 text-center">
+                No se ha podido enviar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.
+              </p>
+            )}
+
             {/* Buttons */}
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <button
                 type="submit"
-                disabled={!privacyAccepted}
+                disabled={!privacyAccepted || sending}
                 className="group relative flex-1 bg-primary text-primary-foreground py-4 rounded font-semibold flex items-center justify-center gap-2.5 overflow-hidden transition-all duration-500 shadow-glow hover:shadow-glow-strong disabled:opacity-30 disabled:cursor-not-allowed text-sm tracking-wider uppercase"
               >
-                <Send className="w-4 h-4 relative z-10" />
-                <span className="relative z-10">Enviar solicitud</span>
+                {sending ? (
+                  <Loader2 className="w-4 h-4 relative z-10 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4 relative z-10" />
+                )}
+                <span className="relative z-10">{sending ? "Enviando..." : "Enviar solicitud"}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </button>
               <a
