@@ -1,5 +1,5 @@
 import { Instagram, Mail, Phone } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/LogoAlecars.png";
 
 const FooterSection = () => {
   const scrollTo = (href: string) => {
