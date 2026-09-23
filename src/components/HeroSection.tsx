@@ -94,11 +94,11 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.05 }}
-          className="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 mb-12 text-white/60 text-xs md:text-sm font-light"
+          className="flex flex-wrap justify-center items-center gap-x-5 md:gap-x-8 gap-y-2 mb-12 text-white/60 md:text-white/70 text-xs md:text-base font-light"
         >
           {["Sin compromiso", "Respuesta en menos de 24 h", "Asesoramiento gratuito"].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+              <Check className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary" strokeWidth={2.5} />
               {t}
             </span>
           ))}
