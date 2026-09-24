@@ -68,7 +68,7 @@ const Privacidad = () => (
       <ul className="list-disc pl-5 space-y-1.5 marker:text-primary">
         <li><Strong>FormSubmit</Strong>: servicio que nos hace llegar por correo los datos del formulario.</li>
         <li><Strong>Google (Gmail)</Strong>: correo electrónico donde recibimos y gestionamos las solicitudes.</li>
-        <li><Strong>Vercel</Strong>: empresa que aloja esta página web.</li>
+        <li><Strong>Vercel</Strong>: empresa que aloja esta página web y nos proporciona estadísticas anónimas de visitas.</li>
         <li><Strong>WhatsApp (Meta)</Strong>: solo si decides contactarnos por esa vía.</li>
       </ul>
       <p>
@@ -109,6 +109,11 @@ const Privacidad = () => (
         carga fuentes desde los servidores de Google Fonts, lo que implica que tu navegador comunica tu dirección IP a
         Google. Si en el futuro incorporamos cookies de análisis o publicidad, te pediremos permiso antes y
         actualizaremos esta política.
+      </p>
+      <p>
+        Para saber cuántas personas visitan la web usamos <Strong>Vercel Web Analytics</Strong>, una herramienta de
+        estadísticas que <Strong>no instala cookies</Strong> ni permite identificarte: solo nos muestra datos agregados y
+        anónimos, como el número de visitas, las páginas vistas, el tipo de dispositivo o el país de procedencia.
       </p>
     </LegalSection>
 
