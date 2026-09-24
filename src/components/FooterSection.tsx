@@ -1,4 +1,5 @@
 import { Instagram, Mail, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/LogoAlecars.png";
 
 const FooterSection = () => {
@@ -45,8 +46,8 @@ const FooterSection = () => {
                   {l.label}
                 </button>
               ))}
-              <a href="#" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Política de privacidad</a>
-              <a href="#" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Aviso legal</a>
+              <Link to="/privacidad" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Política de privacidad</Link>
+              <Link to="/aviso-legal" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Aviso legal</Link>
             </div>
           </div>
 

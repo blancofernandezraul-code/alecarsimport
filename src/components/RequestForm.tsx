@@ -181,7 +181,7 @@ const RequestForm = () => {
                 {privacyAccepted && <Check className="w-3 h-3 text-primary-foreground" strokeWidth={3} />}
               </button>
               <p className="text-[11px] text-muted-foreground leading-relaxed">
-                Acepto la <a href="#" className="text-primary/80 hover:text-primary transition-colors">política de privacidad</a> y consiento el tratamiento de mis datos personales.
+                Acepto la <a href="/privacidad" target="_blank" rel="noopener noreferrer" className="text-primary/80 hover:text-primary underline underline-offset-2 transition-colors">política de privacidad</a> y consiento el tratamiento de mis datos personales.
               </p>
             </div>
 
