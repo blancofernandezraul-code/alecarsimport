@@ -47,7 +47,15 @@ const HeroSection = () => {
         >
           Tu coche ideal{" "}
           <br />
-          <span className="italic font-normal text-gradient-primary">desde Alemania,</span>
+          <span
+            className="italic font-semibold bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, hsl(42 85% 76%), hsl(38 70% 58%))",
+              filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.85)) drop-shadow(0 0 18px rgba(0,0,0,0.55))",
+            }}
+          >
+            desde Alemania,
+          </span>
           <br />
           sin complicaciones.
         </motion.h1>
