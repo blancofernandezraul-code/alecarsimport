@@ -7,8 +7,10 @@ import CasesGallery from "@/components/CasesGallery";
 import RequestForm from "@/components/RequestForm";
 import ContactSection from "@/components/ContactSection";
 import FooterSection from "@/components/FooterSection";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const Index = () => {
+  usePageMeta("/");
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />

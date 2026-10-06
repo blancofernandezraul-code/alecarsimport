@@ -3,13 +3,14 @@ import { useEffect, type ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 import logo from "@/assets/logo_transparente.png";
 import { LEGAL } from "@/lib/legal";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 type Props = { title: string; docTitle: string; children: ReactNode };
 
 /** Plantilla común para las páginas legales (privacidad, aviso legal) */
 const LegalLayout = ({ title, docTitle, children }: Props) => {
+  usePageMeta();
   useEffect(() => {
-    document.title = `${docTitle} — Alecars`;
     window.scrollTo(0, 0);
   }, [docTitle]);
 

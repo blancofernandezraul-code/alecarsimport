@@ -4,6 +4,6 @@ export const LEGAL = {
   titular: "Raúl Blanco Fernández",
   email: "Alecarses@gmail.com",
   telefono: "+34 633 833 700",
-  web: "alecarsimport.vercel.app",
+  web: "www.alecars.es",
   actualizado: "septiembre de 2026",
 };

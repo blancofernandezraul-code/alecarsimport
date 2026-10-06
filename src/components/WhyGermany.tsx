@@ -34,7 +34,14 @@ const AnimatedNumber = ({ target }: { target: number }) => {
     return () => clearInterval(timer);
   }, [isInView, target]);
 
-  return <span ref={ref}>{value.toFixed(1).replace(".", ",")}</span>;
+  // El número animado empieza en 0; el texto oculto lleva la cifra real
+  // para lectores de pantalla y buscadores.
+  return (
+    <>
+      <span ref={ref} aria-hidden="true">{value.toFixed(1).replace(".", ",")}</span>
+      <span className="sr-only">{target.toFixed(1).replace(".", ",")}</span>
+    </>
+  );
 };
 
 const WhyGermany = () => {

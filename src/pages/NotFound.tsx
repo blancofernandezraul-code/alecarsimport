@@ -3,15 +3,16 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Search, Phone } from "lucide-react";
 import logo from "@/assets/logo_transparente.png";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
 const NotFound = () => {
   const location = useLocation();
+  usePageMeta("/404");
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-    document.title = "Página no encontrada — Alecars";
   }, [location.pathname]);
 
   return (

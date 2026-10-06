@@ -4,7 +4,10 @@ import logo from "@/assets/LogoAlecars.png";
 
 const FooterSection = () => {
   const scrollTo = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.querySelector(href);
+    // En otras páginas la sección no existe: volvemos a la portada en esa sección
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+    else window.location.href = "/" + href;
   };
 
   return (
@@ -18,7 +21,7 @@ const FooterSection = () => {
           <div>
             <img
               src={logo}
-              alt="Alescars"
+              alt="Alecars"
               className="h-12 w-auto object-contain mb-4"
               loading="lazy"
               decoding="async"
@@ -46,6 +49,7 @@ const FooterSection = () => {
                   {l.label}
                 </button>
               ))}
+              <Link to="/importar-coche-alemania" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Cómo importar un coche de Alemania</Link>
               <Link to="/privacidad" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Política de privacidad</Link>
               <Link to="/aviso-legal" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Aviso legal</Link>
             </div>
@@ -72,7 +76,7 @@ const FooterSection = () => {
         <div className="section-divider mb-6" />
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[10px] text-muted-foreground/30 uppercase tracking-[0.2em]">
-            © {new Date().getFullYear()} Alescars. Todos los derechos reservados.
+            © {new Date().getFullYear()} Alecars. Todos los derechos reservados.
           </p>
           <p className="text-[10px] text-muted-foreground/20 uppercase tracking-[0.2em]">
             Importación premium desde Alemania

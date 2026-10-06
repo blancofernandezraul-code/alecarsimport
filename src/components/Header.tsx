@@ -46,7 +46,7 @@ const Header = () => {
           onClick={(e) => { e.preventDefault(); scrollTo("#hero"); }}
           className="shrink-0 hover:opacity-75 transition-opacity duration-300"
         >
-          <img src={logo} alt="Alescars" className="h-24 md:h-28 w-auto object-contain" />
+          <img src={logo} alt="Alecars" className="h-24 md:h-28 w-auto object-contain" />
         </a>
 
         {/* Desktop nav */}

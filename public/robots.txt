@@ -1,14 +1,6 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# robots.txt de www.alecars.es
+# Permite el acceso a todos los buscadores y asistentes de IA
 User-agent: *
 Allow: /
+
+Sitemap: https://www.alecars.es/sitemap.xml

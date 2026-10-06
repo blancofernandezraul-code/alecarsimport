@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { ListChecks, Search, ShieldCheck, Handshake, FileText, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { SectionHeader } from "./WhyAlescars";
 
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
-const steps = [
+export const steps = [
   { icon: ListChecks, title: "Tú eliges", desc: "Marca, modelo, presupuesto y criterios.", time: "Día 1" },
   { icon: Search, title: "Búsqueda y filtrado", desc: "Localizamos las mejores unidades del mercado alemán.", time: "1–2 semanas" },
   { icon: ShieldCheck, title: "Verificación", desc: "Historial completo y estado técnico verificado.", time: "2–3 días" },
@@ -123,6 +124,14 @@ const ProcessTimeline = () => {
             <span className="text-muted-foreground text-sm">Tiempo orientativo total:</span>
             <span className="text-primary font-serif font-bold text-lg">2–6 semanas</span>
           </div>
+          <p className="mt-6">
+            <Link
+              to="/importar-coche-alemania"
+              className="text-sm text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              Cómo importar un coche de Alemania, explicado paso a paso
+            </Link>
+          </p>
         </motion.div>
       </div>
 

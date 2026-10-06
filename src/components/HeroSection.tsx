@@ -22,7 +22,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover object-center scale-110"
           loading="eager"
           decoding="async"
-          fetchPriority="high"
+          {...{ fetchpriority: "high" }}
           style={{ filter: "saturate(0.7) contrast(1.05) brightness(1.2)" }}
         />
 
