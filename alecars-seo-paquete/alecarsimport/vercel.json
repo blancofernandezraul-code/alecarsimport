@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "alecarsimport.vercel.app" }],
+      "destination": "https://www.alecars.es/:path*",
+      "permanent": true
+    }
+  ]
+}
