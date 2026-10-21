@@ -39,6 +39,12 @@ export const PAGES: PageMeta[] = [
     description: "Información legal sobre el titular y las condiciones de uso de la web de Alecars.",
   },
   {
+    path: "/gracias",
+    title: "Solicitud recibida | Alecars",
+    description: "Hemos recibido tu solicitud de búsqueda. Te respondemos en menos de 24 horas.",
+    index: false,
+  },
+  {
     path: "/404",
     title: "Página no encontrada | Alecars",
     description: "La página que buscas no existe o se ha movido.",

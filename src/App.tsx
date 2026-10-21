@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Privacidad from "./pages/Privacidad";
 import AvisoLegal from "./pages/AvisoLegal";
 import ImportarCocheAlemania from "./pages/ImportarCocheAlemania";
+import Gracias from "./pages/Gracias";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/importar-coche-alemania" element={<ImportarCocheAlemania />} />
+        <Route path="/gracias" element={<Gracias />} />
         <Route path="/privacidad" element={<Privacidad />} />
         <Route path="/aviso-legal" element={<AvisoLegal />} />
         {/* Las páginas nuevas van aquí, encima de la línea de NotFound */}

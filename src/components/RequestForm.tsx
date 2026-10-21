@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Send, MessageCircle, Check, Sparkles, Loader2 } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
@@ -6,6 +7,7 @@ import { SectionHeader } from "./WhyAlescars";
 const extras = ["Techo panorámico", "Paquete deportivo", "Audio premium", "Otros"];
 
 const RequestForm = () => {
+  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
@@ -40,7 +42,8 @@ const RequestForm = () => {
       form.reset();
       setSelectedExtras([]);
       setPrivacyAccepted(false);
-      setSubmitted(true);
+      // Lleva a /gracias: Google Ads cuenta cada llegada como un contacto conseguido
+      navigate("/gracias");
     } catch {
       setError(true);
     } finally {
