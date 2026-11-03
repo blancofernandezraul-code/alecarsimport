@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo_transparente.png";
+import { OPORTUNIDADES } from "@/data/oportunidades";
 
 const navLinks = [
   { label: "Inicio", href: "#hero" },
@@ -9,7 +10,8 @@ const navLinks = [
   { label: "Alemania", href: "#alemania" },
   { label: "Proceso", href: "#proceso" },
   { label: "Casos reales", href: "#casos" },
-  { label: "Oportunidades", href: "/oportunidades" },
+  // Si hay coches, baja a la sección de la portada; si no, lleva a la página
+  { label: "Oportunidades", href: OPORTUNIDADES.length ? "#oportunidades" : "/oportunidades" },
   { label: "Contacto", href: "#contacto" }, 
 ];
 

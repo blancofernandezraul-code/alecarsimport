@@ -9,6 +9,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 
+// Fotos de los casos reales, usadas solo en los ejemplos de prueba (borrar junto con ellos)
+import bmwgris1 from "@/assets/bmwgris1.webp";
+import bmwgris2 from "@/assets/bmwgris2.webp";
+import bmwgris3 from "@/assets/bmwgris3.webp";
+import mercedes1 from "@/assets/mercedes1.webp";
+import mercedes2 from "@/assets/mercedes2.webp";
+import mercedes3 from "@/assets/mercedes3.webp";
+import bmw1 from "@/assets/bmw1.webp";
+import bmw2 from "@/assets/bmw2.webp";
+import bmw3 from "@/assets/bmw3.webp";
+import bmw4 from "@/assets/bmw4.webp";
+
 export const MARCAS = ["BMW", "Mercedes-Benz", "Audi", "Otras"] as const;
 export type Marca = (typeof MARCAS)[number];
 
@@ -25,7 +37,7 @@ export type Oportunidad = {
   año: string;
   km: string;
   combustible: string;
-  cambio: "Manual" | "Automático";
+  cambio?: "Manual" | "Automático";
   potencia?: string;
   /** Lo que tiene de especial (se ve en la tarjeta) */
   destacado: string;
@@ -53,6 +65,49 @@ const fotosDe = (id: string) =>
     .map((ruta) => ficheros[ruta]);
 
 const LISTA: Oportunidad[] = [
+  // ── EJEMPLOS DE PRUEBA con los casos reales (borrar cuando lleguen las unidades reales) ──
+  {
+    id: "ejemplo-bmw-116i-urban",
+    marca: "BMW",
+    modelo: "Serie 1",
+    version: "116i Paquete Urban",
+    año: "2014",
+    km: "152.000 km",
+    combustible: "Gasolina",
+    destacado: "Importado con Paquete Urban y llantas Paquete M. Revisión completa e historial verificado.",
+    extras: ["Paquete Urban", "Llantas Paquete M"],
+    ahorro: "2.000 €",
+    fotos: [bmw1, bmw2, bmw3, bmw4],
+    ejemplo: true,
+  },
+  {
+    id: "ejemplo-mercedes-c200-t",
+    marca: "Mercedes-Benz",
+    modelo: "Clase C",
+    version: "C 200 T",
+    año: "2015",
+    km: "149.000 km",
+    combustible: "Gasolina",
+    destacado: "Mantenimientos en casa Mercedes y parrilla AMG. Historial completo verificado.",
+    extras: ["Parrilla AMG", "Mantenimientos en Mercedes"],
+    ahorro: "3.000 €",
+    fotos: [mercedes1, mercedes2, mercedes3],
+    ejemplo: true,
+  },
+  {
+    id: "ejemplo-bmw-116i-gris",
+    marca: "BMW",
+    modelo: "Serie 1",
+    version: "116i",
+    año: "2014",
+    km: "150.000 km",
+    combustible: "Gasolina",
+    destacado: "Cadena de distribución nueva y más de 2.500 € en mantenimientos recientes. Listo para muchos kilómetros.",
+    extras: ["Cadena de distribución nueva", "Mantenimientos recientes"],
+    ahorro: "2.500 €",
+    fotos: [bmwgris1, bmwgris2, bmwgris3],
+    ejemplo: true,
+  },
   // Plantilla (copia el bloque, quita las barras // y rellena):
   // {
   //   id: "bmw-serie-3-320d-2019",
