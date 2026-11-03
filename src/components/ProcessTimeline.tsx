@@ -124,14 +124,20 @@ const ProcessTimeline = () => {
             <span className="text-muted-foreground text-sm">Tiempo orientativo total:</span>
             <span className="text-primary font-serif font-bold text-lg">2–6 semanas</span>
           </div>
-          <p className="mt-6">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/cuanto-cuesta-importar-coche-alemania"
+              className="w-full sm:w-auto inline-flex items-center justify-center text-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded text-[11px] font-bold tracking-widest uppercase hover:bg-primary/90 transition-colors"
+            >
+              ¿Cuánto cuesta? Así se calcula el precio final
+            </Link>
             <Link
               to="/importar-coche-alemania"
-              className="text-sm text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center text-center gap-2 border border-primary/40 text-primary px-7 py-3.5 rounded text-[11px] font-bold tracking-widest uppercase hover:bg-primary/10 transition-colors"
             >
-              Cómo importar un coche de Alemania, explicado paso a paso
+              El proceso explicado paso a paso
             </Link>
-          </p>
+          </div>
         </motion.div>
       </div>
 
