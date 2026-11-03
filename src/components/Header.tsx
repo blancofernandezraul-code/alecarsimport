@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Alemania", href: "#alemania" },
   { label: "Proceso", href: "#proceso" },
   { label: "Casos reales", href: "#casos" },
+  { label: "Oportunidades", href: "/oportunidades" },
   { label: "Contacto", href: "#contacto" }, 
 ];
 
@@ -47,14 +48,14 @@ const Header = () => {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-7">
           {navLinks.map((link, i) => (
             <a
               key={link.href}
-              href={`/${link.href}`}
-              onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+              href={link.href.startsWith("/") ? link.href : `/${link.href}`}
+              onClick={(e) => { if (link.href.startsWith("/")) return; e.preventDefault(); scrollTo(link.href); }}
               style={{ animationDelay: `${100 + i * 50}ms` }}
-              className="hero-fade relative text-[11px] font-sans text-white/60 hover:text-white transition-colors duration-300 tracking-[0.18em] uppercase group"
+              className="hero-fade relative whitespace-nowrap text-[11px] font-sans text-white/60 hover:text-white transition-colors duration-300 tracking-[0.18em] uppercase group"
             >
               {link.label}
               {/* underline animado */}
@@ -75,7 +76,7 @@ const Header = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-white/80 hover:text-white transition-colors p-2"
+          className="xl:hidden text-white/80 hover:text-white transition-colors p-2"
           aria-label="Menú"
           aria-expanded={isOpen}
         >
@@ -106,7 +107,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="lg:hidden absolute top-full left-0 right-0 overflow-hidden"
+            className="xl:hidden absolute top-full left-0 right-0 overflow-hidden"
             style={{ background: "rgba(0,0,0,0.96)", backdropFilter: "blur(24px)" }}
           >
             {/* Línea superior verde */}
@@ -116,11 +117,11 @@ const Header = () => {
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
-                  href={`/${link.href}`}
+                  href={link.href.startsWith("/") ? link.href : `/${link.href}`}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.25, delay: i * 0.04 }}
-                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                  onClick={(e) => { if (link.href.startsWith("/")) return; e.preventDefault(); scrollTo(link.href); }}
                   className="text-left text-white/50 hover:text-white transition-colors py-3.5 text-sm uppercase tracking-[0.2em] border-b border-white/5 flex items-center justify-between group"
                 >
                   {link.label}

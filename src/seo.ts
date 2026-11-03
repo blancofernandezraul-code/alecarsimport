@@ -35,6 +35,12 @@ export const PAGES: PageMeta[] = [
       "Transporte, ITV, impuesto de matriculación y trámites: qué se paga al importar un coche alemán y cómo se calcula. Presupuesto cerrado con todo incluido.",
   },
   {
+    path: "/oportunidades",
+    title: "Coches de Alemania disponibles: oportunidades | Alecars",
+    description:
+      "BMW, Mercedes-Benz, Audi y más: coches reales disponibles en Alemania seleccionados por Alecars. Mira fotos, extras y ahorro frente a España.",
+  },
+  {
     path: "/privacidad",
     title: "Política de privacidad | Alecars",
     description: "Qué datos recoge la web de Alecars, para qué los usamos y cuáles son tus derechos.",
