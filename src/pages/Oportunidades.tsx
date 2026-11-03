@@ -95,6 +95,22 @@ const Oportunidades = () => {
           </p>
         </div>
 
+        {OPORTUNIDADES.length === 0 ? (
+          <div className="border border-primary/30 rounded-xl p-8 md:p-12 bg-card max-w-3xl">
+            <h2 className="font-serif text-2xl md:text-3xl font-semibold mb-3">Estamos preparando la primera selección</h2>
+            <p className="text-muted-foreground leading-relaxed mb-7">
+              Muy pronto verás aquí coches reales disponibles en Alemania, elegidos uno a uno por ser una buena
+              importación. Mientras tanto, dinos qué coche buscas y te lo encontramos nosotros. Gratis y sin compromiso.
+            </p>
+            <a
+              href="/#formulario"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded text-sm font-bold tracking-widest uppercase hover:bg-primary/90 transition-colors"
+            >
+              Solicitar búsqueda gratuita <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        ) : (
+        <>
         {/* ── Buscador ── */}
         <div className="border border-border/60 rounded-xl bg-card/60 p-5 md:p-6 mb-10">
           <div className="flex flex-col lg:flex-row lg:items-end gap-5">
@@ -176,33 +192,58 @@ const Oportunidades = () => {
                   <Datos o={o} />
                   <p className="text-muted-foreground text-sm leading-relaxed mt-4">{o.destacado}</p>
                   {o.extras.length > 0 && (
-                    <ul className="flex flex-wrap gap-1.5 mt-4">
-                      {o.extras.slice(0, 3).map((e) => (
-                        <li key={e} className="text-[11px] border border-border rounded px-2 py-1 text-foreground/80">{e}</li>
-                      ))}
-                      {o.extras.length > 3 && (
-                        <li className="text-[11px] px-2 py-1 text-muted-foreground">+{o.extras.length - 3} extras</li>
+                    <>
+                      <p className="font-serif text-lg font-semibold mt-5 mb-2">Extras destacados</p>
+                      <ul className="space-y-1.5">
+                        {o.extras.slice(0, 4).map((e) => (
+                          <li key={e} className="flex gap-2 text-sm">
+                            <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" strokeWidth={2.5} /> {e}
+                          </li>
+                        ))}
+                      </ul>
+                      {o.extras.length > 4 && (
+                        <button
+                          type="button"
+                          onClick={() => setAbierta(o)}
+                          className="text-sm text-primary underline underline-offset-4 mt-2 text-left"
+                        >
+                          Ver los {o.extras.length} extras y todas las fotos
+                        </button>
                       )}
-                    </ul>
+                    </>
                   )}
-                  <div className="mt-auto pt-5 flex items-end justify-between gap-3">
-                    {o.ahorro ? (
-                      <div className="rounded border border-primary/20 bg-primary/5 px-3 py-2.5">
-                        <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground mb-1 flex items-center gap-1.5">
-                          <PiggyBank className="w-3 h-3 text-primary" /> Ahorro vs. España
-                        </p>
-                        <p className="text-lg font-semibold text-primary leading-none">{o.ahorro}</p>
-                      </div>
-                    ) : (
-                      <span />
+                  <div className="mt-auto pt-6">
+                    {o.ahorro && (
+                      <p className="inline-flex items-center gap-2 rounded border border-primary/20 bg-primary/5 px-3 py-2 text-sm mb-4">
+                        <PiggyBank className="w-4 h-4 text-primary" /> Ahorro vs. España:{" "}
+                        <strong className="text-primary">{o.ahorro}</strong>
+                      </p>
                     )}
-                    <button
-                      type="button"
-                      onClick={() => setAbierta(o)}
-                      className="text-[11px] font-bold tracking-widest uppercase text-primary border border-primary/40 rounded px-4 py-2.5 hover:bg-primary/10 transition-colors"
-                    >
-                      Ver ficha
-                    </button>
+                    <div className="flex flex-col gap-2.5">
+                      <a
+                        href={whatsapp(o)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded text-[11px] font-bold tracking-widest uppercase hover:bg-primary/90 transition-colors"
+                      >
+                        <MessageCircle className="w-4 h-4" /> Me interesa este coche
+                      </a>
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <button
+                          type="button"
+                          onClick={() => setAbierta(o)}
+                          className="inline-flex items-center justify-center whitespace-nowrap border border-border px-2 py-3 rounded text-[11px] font-bold tracking-wide uppercase hover:border-primary/50 transition-colors"
+                        >
+                          Ver ficha
+                        </button>
+                        <a
+                          href="/#formulario"
+                          className="inline-flex items-center justify-center text-center whitespace-nowrap border border-primary/40 text-primary px-2 py-3 rounded text-[11px] font-bold tracking-wide uppercase hover:bg-primary/10 transition-colors"
+                        >
+                          Buscar uno parecido
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -223,7 +264,11 @@ const Oportunidades = () => {
           </div>
         )}
 
+        </>
+        )}
+
         {/* ── Llamada final ── */}
+        {OPORTUNIDADES.length > 0 && (
         <div className="mt-16 border border-primary/30 rounded-xl p-8 md:p-10 bg-card max-w-3xl">
           <h2 className="font-serif text-2xl md:text-3xl font-semibold mb-3">¿No ves el coche que buscas?</h2>
           <p className="text-muted-foreground leading-relaxed mb-7">
@@ -237,6 +282,7 @@ const Oportunidades = () => {
             Solicitar búsqueda gratuita <ArrowRight className="w-4 h-4" />
           </a>
         </div>
+        )}
       </main>
 
       <FooterSection />

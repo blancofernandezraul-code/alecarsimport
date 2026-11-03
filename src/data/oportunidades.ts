@@ -8,15 +8,6 @@
 // Para quitarlo cuando se venda: borra su bloque y su carpeta.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import bmwgris1 from "@/assets/bmwgris1.webp";
-import bmwgris2 from "@/assets/bmwgris2.webp";
-import bmwgris3 from "@/assets/bmwgris3.webp";
-import mercedes1 from "@/assets/mercedes1.webp";
-import mercedes2 from "@/assets/mercedes2.webp";
-import mercedes3 from "@/assets/mercedes3.webp";
-import bmw1 from "@/assets/bmw1.webp";
-import bmw2 from "@/assets/bmw2.webp";
-import bmw4 from "@/assets/bmw4.webp";
 
 export const MARCAS = ["BMW", "Mercedes-Benz", "Audi", "Otras"] as const;
 export type Marca = (typeof MARCAS)[number];
@@ -62,55 +53,22 @@ const fotosDe = (id: string) =>
     .map((ruta) => ficheros[ruta]);
 
 const LISTA: Oportunidad[] = [
-  // ── EJEMPLOS DE PRUEBA (se sustituyen por las unidades reales) ──
-  {
-    id: "ejemplo-bmw-serie-1",
-    marca: "BMW",
-    modelo: "Serie 1",
-    version: "116i Paquete M",
-    año: "2015",
-    km: "98.000 km",
-    combustible: "Gasolina",
-    cambio: "Manual",
-    potencia: "136 CV",
-    destacado: "Libro de mantenimiento completo en BMW y un solo propietario. Muy buen estado de interior.",
-    extras: ["Paquete M", "Navegador Professional", "Asientos calefactables", "Sensores de aparcamiento"],
-    ahorro: "2.500 €",
-    fotos: [bmw1, bmw2, bmw4],
-    ejemplo: true,
-  },
-  {
-    id: "ejemplo-bmw-serie-1-b",
-    marca: "BMW",
-    modelo: "Serie 1",
-    version: "118d Urban",
-    año: "2016",
-    km: "121.000 km",
-    combustible: "Diésel",
-    cambio: "Automático",
-    potencia: "150 CV",
-    destacado: "Cadena de distribución recién cambiada y neumáticos nuevos.",
-    extras: ["Cambio automático", "Faros LED", "Control de crucero"],
-    ahorro: "2.000 €",
-    fotos: [bmwgris1, bmwgris2, bmwgris3],
-    ejemplo: true,
-  },
-  {
-    id: "ejemplo-mercedes-clase-c",
-    marca: "Mercedes-Benz",
-    modelo: "Clase C",
-    version: "C 200 Estate AMG Line",
-    año: "2017",
-    km: "112.000 km",
-    combustible: "Gasolina",
-    cambio: "Automático",
-    potencia: "184 CV",
-    destacado: "Mantenimientos en Mercedes y equipamiento AMG Line exterior e interior.",
-    extras: ["AMG Line", "Techo panorámico", "Cámara trasera", "Portón eléctrico"],
-    ahorro: "3.500 €",
-    fotos: [mercedes1, mercedes2, mercedes3],
-    ejemplo: true,
-  },
+  // Plantilla (copia el bloque, quita las barras // y rellena):
+  // {
+  //   id: "bmw-serie-3-320d-2019",
+  //   marca: "BMW",                       // "BMW" | "Mercedes-Benz" | "Audi" | "Otras"
+  //   // fabricante: "Porsche",           // solo si marca es "Otras"
+  //   modelo: "Serie 3",
+  //   version: "320d Touring M Sport",
+  //   año: "2019",
+  //   km: "85.000 km",
+  //   combustible: "Diésel",
+  //   cambio: "Automático",
+  //   potencia: "190 CV",
+  //   destacado: "Qué tiene de especial, en una o dos frases.",
+  //   extras: ["Paquete M", "Techo panorámico", "Head-Up Display"],
+  //   ahorro: "4.000 €",
+  // },
 ];
 
 export const OPORTUNIDADES: Oportunidad[] = LISTA.map((o) => ({
