@@ -175,6 +175,9 @@ const RequestForm = () => {
               <button
                 type="button"
                 onClick={() => setPrivacyAccepted(!privacyAccepted)}
+                role="checkbox"
+                aria-checked={privacyAccepted}
+                aria-label="Acepto la política de privacidad"
                 className={`w-5 h-5 rounded shrink-0 mt-0.5 flex items-center justify-center transition-all duration-500 ${
                   privacyAccepted
                     ? "bg-primary border border-primary shadow-glow"

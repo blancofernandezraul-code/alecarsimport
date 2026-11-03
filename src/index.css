@@ -236,3 +236,17 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Animaciones de entrada del inicio en CSS: se ven aunque el JavaScript aún no haya cargado.
+   Empiezan en opacidad 0.01 (no 0) para que Google mida bien cuándo aparece el titular. */
+@keyframes hero-rise { from { opacity: 0.01; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes hero-fade { from { opacity: 0.01; } to { opacity: 1; } }
+@keyframes hero-drop { from { opacity: 0.01; transform: translateY(-24px); } to { opacity: 1; transform: none; } }
+@keyframes hero-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+.hero-rise { animation: hero-rise 0.9s cubic-bezier(0.23, 1, 0.32, 1) both; }
+.hero-fade { animation: hero-fade 0.8s ease-out both; }
+.hero-drop { animation: hero-drop 0.8s cubic-bezier(0.23, 1, 0.32, 1) both; }
+.hero-bob { animation: hero-bob 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise, .hero-fade, .hero-drop, .hero-bob { animation: none; }
+}

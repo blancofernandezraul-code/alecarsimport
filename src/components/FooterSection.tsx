@@ -33,7 +33,7 @@ const FooterSection = () => {
 
           {/* Links */}
           <div>
-            <p className="text-[11px] font-sans font-medium uppercase tracking-[0.25em] mb-5 text-muted-foreground/40">Navegación</p>
+            <p className="text-[11px] font-sans font-medium uppercase tracking-[0.25em] mb-5 text-muted-foreground/70">Navegación</p>
             <div className="flex flex-col gap-3">
               {[
                 { label: "Inicio", href: "#hero" },
@@ -57,7 +57,7 @@ const FooterSection = () => {
 
           {/* Contact */}
           <div>
-            <p className="text-[11px] font-sans font-medium uppercase tracking-[0.25em] mb-5 text-muted-foreground/40">Contacto</p>
+            <p className="text-[11px] font-sans font-medium uppercase tracking-[0.25em] mb-5 text-muted-foreground/70">Contacto</p>
             <div className="flex flex-col gap-3">
               <a href="mailto:Alecarses@gmail.com" className="flex items-center gap-3 text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500">
                 <Mail className="w-3.5 h-3.5 text-primary/50" /> Alecarses@gmail.com
@@ -75,10 +75,10 @@ const FooterSection = () => {
         {/* Bottom */}
         <div className="section-divider mb-6" />
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] text-muted-foreground/30 uppercase tracking-[0.2em]">
+          <p className="text-[10px] text-muted-foreground/70 uppercase tracking-[0.2em]">
             © {new Date().getFullYear()} Alecars. Todos los derechos reservados.
           </p>
-          <p className="text-[10px] text-muted-foreground/20 uppercase tracking-[0.2em]">
+          <p className="text-[10px] text-muted-foreground/60 uppercase tracking-[0.2em]">
             Importación premium desde Alemania
           </p>
         </div>

@@ -105,10 +105,9 @@ const Privacidad = () => (
 
     <LegalSection title="8. Cookies">
       <p>
-        Esta web <Strong>no utiliza cookies de publicidad ni de análisis</Strong>. Para mostrar las tipografías, la página
-        carga fuentes desde los servidores de Google Fonts, lo que implica que tu navegador comunica tu dirección IP a
-        Google. Si en el futuro incorporamos cookies de análisis o publicidad, te pediremos permiso antes y
-        actualizaremos esta política.
+        Esta web <Strong>no utiliza cookies de publicidad ni de análisis</Strong>. Las tipografías se sirven desde la
+        propia web, sin conectar con servidores de terceros. Si en el futuro incorporamos cookies de análisis o
+        publicidad, te pediremos permiso antes y actualizaremos esta política.
       </p>
       <p>
         Para saber cuántas personas visitan la web usamos <Strong>Vercel Web Analytics</Strong>, una herramienta de

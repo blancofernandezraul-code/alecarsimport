@@ -2,16 +2,16 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Gauge, ArrowUpRight, ChevronLeft, ChevronRight, PiggyBank, Clock, Quote } from "lucide-react";
 import { SectionHeader } from "./WhyAlescars";
-import bmwgris1 from "@/assets/bmwgris1.jpeg";
-import bmwgris2 from "@/assets/bmwgris2.jpeg";
-import bmwgris3 from "@/assets/bmwgris3.jpeg";
-import mercedes1 from "@/assets/mercedes1.jpeg";
-import mercedes2 from "@/assets/mercedes2.jpeg";
-import mercedes3 from "@/assets/mercedes3.jpeg";
-import bmw1 from "@/assets/bmw1.jpeg";
-import bmw2 from "@/assets/bmw2.jpeg";
-import bmw3 from "@/assets/bmw3.jpeg";
-import bmw4 from "@/assets/bmw4.jpeg";
+import bmwgris1 from "@/assets/bmwgris1.webp";
+import bmwgris2 from "@/assets/bmwgris2.webp";
+import bmwgris3 from "@/assets/bmwgris3.webp";
+import mercedes1 from "@/assets/mercedes1.webp";
+import mercedes2 from "@/assets/mercedes2.webp";
+import mercedes3 from "@/assets/mercedes3.webp";
+import bmw1 from "@/assets/bmw1.webp";
+import bmw2 from "@/assets/bmw2.webp";
+import bmw3 from "@/assets/bmw3.webp";
+import bmw4 from "@/assets/bmw4.webp";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
 type Case = {
@@ -112,10 +112,10 @@ const ImageCarousel = ({
 
       {imgs.length > 1 && (
         <>
-          <button onClick={prev} className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10">
+          <button onClick={prev} aria-label="Foto anterior" className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10">
             <ChevronLeft size={14} />
           </button>
-          <button onClick={next} className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10">
+          <button onClick={next} aria-label="Foto siguiente" className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-background/60 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-primary/20 transition-colors duration-300 z-10">
             <ChevronRight size={14} />
           </button>
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
@@ -123,6 +123,7 @@ const ImageCarousel = ({
               <button
                 key={i}
                 onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+                aria-label={`Ver foto ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? "bg-primary w-3" : "bg-white/50 w-1.5"}`}
               />
             ))}

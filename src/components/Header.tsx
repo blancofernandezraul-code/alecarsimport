@@ -28,11 +28,8 @@ const Header = () => {
   };
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <header
+      className={`hero-drop fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-black/80 backdrop-blur-xl border-b border-white/5 py-1"
           : "bg-transparent py-2"
@@ -52,29 +49,27 @@ const Header = () => {
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link, i) => (
-            <motion.button
+            <a
               key={link.href}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
-              onClick={() => scrollTo(link.href)}
-              className="relative text-[11px] font-sans text-white/60 hover:text-white transition-colors duration-300 tracking-[0.18em] uppercase group"
+              href={`/${link.href}`}
+              onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+              style={{ animationDelay: `${100 + i * 50}ms` }}
+              className="hero-fade relative text-[11px] font-sans text-white/60 hover:text-white transition-colors duration-300 tracking-[0.18em] uppercase group"
             >
               {link.label}
               {/* underline animado */}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
-            </motion.button>
+            </a>
           ))}
 
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            onClick={() => scrollTo("#formulario")}
-            className="ml-2 bg-primary text-primary-foreground px-6 py-2.5 rounded text-[11px] font-bold tracking-widest uppercase hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-glow hover:shadow-glow-strong"
+          <a
+            href="/#formulario"
+            onClick={(e) => { e.preventDefault(); scrollTo("#formulario"); }}
+            style={{ animationDelay: "500ms" }}
+            className="hero-fade ml-2 bg-primary text-primary-foreground px-6 py-2.5 rounded text-[11px] font-bold tracking-widest uppercase hover:bg-primary/90 hover:scale-105 transition-all duration-300 shadow-glow hover:shadow-glow-strong"
           >
             Solicitar
-          </motion.button>
+          </a>
         </nav>
 
         {/* Mobile toggle */}
@@ -82,6 +77,7 @@ const Header = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden text-white/80 hover:text-white transition-colors p-2"
           aria-label="Menú"
+          aria-expanded={isOpen}
         >
           <motion.div animate={{ rotate: isOpen ? 90 : 0 }} transition={{ duration: 0.25 }}>
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -118,33 +114,35 @@ const Header = () => {
 
             <div className="container mx-auto py-6 px-5 flex flex-col gap-0">
               {navLinks.map((link, i) => (
-                <motion.button
+                <motion.a
                   key={link.href}
+                  href={`/${link.href}`}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.25, delay: i * 0.04 }}
-                  onClick={() => scrollTo(link.href)}
+                  onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                   className="text-left text-white/50 hover:text-white transition-colors py-3.5 text-sm uppercase tracking-[0.2em] border-b border-white/5 flex items-center justify-between group"
                 >
                   {link.label}
                   <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg leading-none">→</span>
-                </motion.button>
+                </motion.a>
               ))}
 
-              <motion.button
+              <motion.a
+                href="/#formulario"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.28 }}
-                onClick={() => scrollTo("#formulario")}
+                onClick={(e) => { e.preventDefault(); scrollTo("#formulario"); }}
                 className="bg-primary text-primary-foreground py-4 rounded text-sm font-bold text-center mt-6 shadow-glow tracking-widest uppercase hover:bg-primary/90 transition-all duration-300"
               >
                 Solicitar búsqueda gratuita
-              </motion.button>
+              </motion.a>
             </div>
           </motion.nav>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };
 

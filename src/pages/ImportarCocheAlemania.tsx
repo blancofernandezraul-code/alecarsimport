@@ -38,6 +38,24 @@ const ImportarCocheAlemania = () => {
       </header>
 
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.alecars.es/" },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Importar un coche de Alemania",
+                  item: "https://www.alecars.es/importar-coche-alemania",
+                },
+              ],
+            }),
+          }}
+        />
         <article className="container mx-auto px-4 py-12 md:py-16 max-w-3xl">
           <nav aria-label="Ruta de navegación" className="text-sm text-muted-foreground/60 mb-8">
             <Link to="/" className="hover:text-primary transition-colors">Inicio</Link>

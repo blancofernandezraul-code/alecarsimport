@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, MessageCircle, Check } from "lucide-react";
-import fondo from "@/assets/fondo.jpg";
+import fondo from "@/assets/fondo.webp";
+import fondoMovil from "@/assets/fondo-900.webp";
 
 const HeroSection = () => {
   const ref = useRef<HTMLElement>(null);
@@ -18,6 +19,8 @@ const HeroSection = () => {
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
         <img
           src={fondo}
+          srcSet={`${fondoMovil} 900w, ${fondo} 1920w`}
+          sizes="100vw"
           alt="Porsche 911 GT3 RS, vehículo premium importado desde Alemania"
           className="w-full h-full object-cover object-center scale-110"
           loading="eager"
@@ -39,11 +42,9 @@ const HeroSection = () => {
       {/* Content */}
       <motion.div style={{ opacity }} className="relative z-10 container mx-auto text-center px-4 pt-24 md:pt-16">
 
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
-          className="font-serif text-4xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6 max-w-5xl mx-auto"
+        <h1
+          style={{ animationDelay: "100ms" }}
+          className="hero-rise font-serif text-4xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6 max-w-5xl mx-auto"
         >
           Tu coche ideal{" "}
           <br />
@@ -58,23 +59,19 @@ const HeroSection = () => {
           </span>
           <br />
           sin complicaciones.
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65 }}
-          className="text-white/70 text-base md:text-xl max-w-lg mx-auto mb-10 font-light leading-relaxed"
+        <p
+          style={{ animationDelay: "250ms" }}
+          className="hero-rise text-white/70 text-base md:text-xl max-w-lg mx-auto mb-10 font-light leading-relaxed"
         >
           Buscamos, verificamos, compramos y te lo entregamos en España.{" "}
           <span className="text-white font-medium">Tú solo eliges el coche.</span>
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.85 }}
-          className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-5"
+        <div
+          style={{ animationDelay: "400ms" }}
+          className="hero-rise flex flex-col sm:flex-row justify-center items-center gap-4 mb-5"
         >
           {/* CTA principal: formulario */}
           <button
@@ -95,14 +92,12 @@ const HeroSection = () => {
             <MessageCircle className="w-4 h-4" strokeWidth={2} />
             Escríbenos por WhatsApp
           </a>
-        </motion.div>
+        </div>
 
         {/* Frase de confianza */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.05 }}
-          className="flex flex-wrap justify-center items-center gap-x-5 md:gap-x-8 gap-y-2 mb-12 text-white/60 md:text-white/70 text-xs md:text-base font-light"
+        <div
+          style={{ animationDelay: "550ms" }}
+          className="hero-fade flex flex-wrap justify-center items-center gap-x-5 md:gap-x-8 gap-y-2 mb-12 text-white/60 md:text-white/70 text-xs md:text-base font-light"
         >
           {["Sin compromiso", "Respuesta en menos de 24 h", "Asesoramiento gratuito"].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
@@ -110,22 +105,16 @@ const HeroSection = () => {
               {t}
             </span>
           ))}
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      <div
+        style={{ animationDelay: "900ms" }}
+        className="hero-fade absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-12 bg-gradient-to-b from-primary/80 to-transparent"
-        />
-      </motion.div>
+        <div className="hero-bob w-[1px] h-12 bg-gradient-to-b from-primary/80 to-transparent" />
+      </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent" />
     </section>
