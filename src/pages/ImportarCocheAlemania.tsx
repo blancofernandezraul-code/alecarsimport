@@ -57,7 +57,7 @@ const ImportarCocheAlemania = () => {
           }}
         />
         <article className="container mx-auto px-4 py-12 md:py-16 max-w-3xl">
-          <nav aria-label="Ruta de navegación" className="text-sm text-muted-foreground/60 mb-8">
+          <nav aria-label="Ruta de navegación" className="text-sm text-muted-foreground/70 mb-8">
             <Link to="/" className="hover:text-primary transition-colors">Inicio</Link>
             <span className="mx-2">/</span>
             <span>Importar un coche de Alemania</span>
@@ -98,9 +98,15 @@ const ImportarCocheAlemania = () => {
 
           <H2>Qué comprobamos antes de comprar</H2>
           <P>
-            En Alemania hay mucha oferta de coches usados, pero no todos los anuncios cuentan la historia completa. Antes de
-            dar el visto bueno revisamos el historial completo del coche y su estado técnico, con inspección presencial del
-            vehículo. Si algo no cuadra, no se compra y buscamos otra unidad.
+            En Alemania hay mucha oferta de coches usados, pero no todos los anuncios cuentan la historia completa. Por eso,
+            antes de ir a por ningún coche, un perito mecánico colaborador de Alecars lo revisa en persona. Contamos con
+            peritos en tres zonas distintas de Alemania.
+          </P>
+          <P>
+            El perito revisa el motor, la mecánica y la carrocería y nos entrega un informe completo con fotos y su
+            valoración profesional. Nosotros comprobamos además el historial del coche. Si la unidad no es correcta para
+            importar, no se compra y buscamos otra.
+            Cuando vamos a por el coche, ya sabemos que es el adecuado.
           </P>
 
           <H2>Qué se paga al importar un coche</H2>
@@ -114,8 +120,25 @@ const ImportarCocheAlemania = () => {
             depende de las emisiones de CO2 del coche.
           </P>
           <P>
-            Antes de comprar nada te enviamos un presupuesto por escrito con el desglose de cada coste, para que sepas el precio
-            final del coche matriculado en España.
+            Antes de comprar nada te enviamos un presupuesto por escrito con el precio final del coche matriculado en España,
+            con absolutamente todo incluido. Una sola cifra cerrada, sin sorpresas.{" "}
+            <Link to="/cuanto-cuesta-importar-coche-alemania" className="text-primary underline underline-offset-4">
+              Más detalle sobre qué se paga al importar un coche
+            </Link>
+            .
+          </P>
+
+          <H2>Garantía mecánica opcional</H2>
+          <P>
+            Además del peritaje, puedes contratar una garantía mecánica para tu coche. Cubre averías mecánicas y eléctricas
+            según la cobertura que elijas, para que no solo esté bien cuando lo compras, sino que sigas cubierto después. Te
+            explicamos las opciones en la llamada.
+          </P>
+
+          <H2>Impuestos y trámites en regla</H2>
+          <P>
+            Trabajamos con un asesor fiscal especializado en la importación de coches desde Alemania, para que el impuesto de
+            matriculación, la documentación y el resto de trámites se hagan correctamente.
           </P>
 
           <H2>Qué tienes que hacer tú</H2>

@@ -8,7 +8,7 @@ const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 export const steps = [
   { icon: ListChecks, title: "Tú eliges", desc: "Marca, modelo, presupuesto y criterios.", time: "Día 1" },
   { icon: Search, title: "Búsqueda y filtrado", desc: "Localizamos las mejores unidades del mercado alemán.", time: "1–2 semanas" },
-  { icon: ShieldCheck, title: "Verificación", desc: "Historial completo y estado técnico verificado.", time: "2–3 días" },
+  { icon: ShieldCheck, title: "Peritaje", desc: "Un perito mecánico colaborador revisa el coche en persona y emite un informe con fotos y su valoración.", time: "2–3 días" },
   { icon: Handshake, title: "Negociación y compra", desc: "Negociamos el mejor precio y cerramos la compra.", time: "1–3 días" },
   { icon: FileText, title: "Gestión de trámites", desc: "Documentación, ITV, matriculación e impuestos.", time: "1–2 semanas" },
   { icon: Truck, title: "Entrega llave en mano", desc: "Tu coche entregado y listo para circular en España.", time: "3–5 días" },

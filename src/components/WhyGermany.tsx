@@ -87,14 +87,14 @@ const WhyGermany = () => {
             <div className="relative bg-background rounded-2xl p-10 md:p-14">
               <div className="flex items-center justify-center gap-3 mb-10">
                 <div className="h-px w-6 bg-gradient-to-r from-transparent to-primary/60" />
-                <p className="text-primary text-[10px] uppercase tracking-[0.4em] font-semibold">Edad media de los vehículos</p>
+                <p className="text-primary text-[10px] uppercase tracking-[0.4em] font-semibold">Edad media de los turismos</p>
                 <div className="h-px w-6 bg-gradient-to-l from-transparent to-primary/60" />
               </div>
 
               <div className="flex items-center justify-center gap-8 md:gap-20">
                 <div className="text-center">
                   <p className="font-serif text-5xl md:text-6xl font-bold text-primary leading-none">
-                    <AnimatedNumber target={10.3} />
+                    <AnimatedNumber target={10.9} />
                   </p>
                   <p className="text-[10px] text-muted-foreground mt-3 uppercase tracking-[0.2em]">años</p>
                   <p className="text-sm font-semibold text-foreground mt-1 tracking-wide">Alemania</p>
@@ -106,18 +106,35 @@ const WhyGermany = () => {
                 </div>
                 <div className="text-center">
                   <p className="font-serif text-5xl md:text-6xl font-bold text-muted-foreground/40 leading-none">
-                    <AnimatedNumber target={14.2} />
+                    <AnimatedNumber target={14.6} />
                   </p>
                   <p className="text-[10px] text-muted-foreground mt-3 uppercase tracking-[0.2em]">años</p>
                   <p className="text-sm font-semibold text-muted-foreground/60 mt-1 tracking-wide">España</p>
                 </div>
               </div>
 
-              <p className="text-center text-muted-foreground/40 text-[10px] mt-10 uppercase tracking-[0.2em]">
-                Fuente: datos del sector automovilístico europeo
+              <p className="text-center text-muted-foreground/70 text-xs mt-10">
+                Fuentes: KBA, registro oficial de vehículos de Alemania (1 de enero de 2026), y ANFAC (España, 2025).
               </p>
             </div>
           </div>
+
+          {/* Importación en auge */}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-background border border-border/60 rounded-xl p-7 text-center">
+              <p className="font-serif text-4xl font-bold text-primary leading-none">+32 %</p>
+              <p className="text-muted-foreground text-sm leading-relaxed mt-3">
+                En 2025 se importaron a España 137.122 turismos usados, un 32 % más que en 2024.
+              </p>
+            </div>
+            <div className="bg-background border border-border/60 rounded-xl p-7 text-center">
+              <p className="font-serif text-4xl font-bold text-primary leading-none">44 %</p>
+              <p className="text-muted-foreground text-sm leading-relaxed mt-3">
+                Alemania es el primer país de origen: de allí llega el 44,1 % de los usados importados.
+              </p>
+            </div>
+          </div>
+          <p className="text-center text-muted-foreground/70 text-xs mt-4">Fuentes: consultora MSI y DGT.</p>
         </div>
       </div>
 

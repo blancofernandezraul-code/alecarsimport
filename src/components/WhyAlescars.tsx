@@ -1,12 +1,12 @@
 import { useFadeIn } from "@/hooks/useFadeIn";
 import { Search, ShieldCheck, FileCheck, Car, Eye, Scale } from "lucide-react";
 const features = [
-  { icon: ShieldCheck, title: "Experiencia en importación", desc: "Años de trayectoria gestionando importaciones desde Alemania con éxito." },
+  { icon: ShieldCheck, title: "Especialistas en Alemania", desc: "Fundada en 2025 y dedicada exclusivamente a importar coches desde Alemania, con un proceso propio de principio a fin." },
   { icon: Search, title: "Búsqueda personalizada", desc: "Encontramos exactamente el coche que buscas según tus criterios." },
-  { icon: Eye, title: "Verificación en concesionario", desc: "Inspección presencial del vehículo antes de la compra." },
+  { icon: Eye, title: "Peritaje profesional en Alemania", desc: "Peritos mecánicos colaboradores en tres zonas de Alemania revisan el coche en persona y emiten un informe con fotos antes de comprarlo." },
   { icon: Car, title: "Servicio llave en mano", desc: "Nos encargamos de todo: compra, transporte, trámites y entrega." },
   { icon: FileCheck, title: "Transparencia total", desc: "Documentación clara en cada paso. Sin sorpresas ni costes ocultos." },
-  { icon: Scale, title: "Asesoramiento legal y fiscal", desc: "Gestión conforme a normativa española y alemana, asegurando una importación segura y sin riesgos." },
+  { icon: Scale, title: "Asesoría fiscal especializada", desc: "Trabajamos con un asesor fiscal especializado en la importación de coches desde Alemania, para que impuestos y trámites estén en regla." },
 ];
 
 export const SectionHeader = ({

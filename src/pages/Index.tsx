@@ -4,6 +4,7 @@ import WhyAlescars from "@/components/WhyAlescars";
 import WhyGermany from "@/components/WhyGermany";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import CasesGallery from "@/components/CasesGallery";
+import PeritajeGarantia from "@/components/PeritajeGarantia";
 import RequestForm from "@/components/RequestForm";
 import ContactSection from "@/components/ContactSection";
 import FooterSection from "@/components/FooterSection";
@@ -19,6 +20,7 @@ const Index = () => {
         <WhyAlescars />
         <WhyGermany />
         <ProcessTimeline />
+        <PeritajeGarantia />
         <CasesGallery />
         <RequestForm />
         <ContactSection />

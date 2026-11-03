@@ -29,6 +29,12 @@ export const PAGES: PageMeta[] = [
       "Búsqueda, verificación, compra, transporte, ITV, impuestos y matriculación. Así importamos tu coche desde Alemania, en un plazo de 2 a 6 semanas.",
   },
   {
+    path: "/cuanto-cuesta-importar-coche-alemania",
+    title: "¿Cuánto cuesta importar un coche de Alemania? | Alecars",
+    description:
+      "Transporte, ITV, impuesto de matriculación y trámites: qué se paga al importar un coche alemán y cómo se calcula. Presupuesto cerrado con todo incluido.",
+  },
+  {
     path: "/privacidad",
     title: "Política de privacidad | Alecars",
     description: "Qué datos recoge la web de Alecars, para qué los usamos y cuáles son tus derechos.",

@@ -50,6 +50,7 @@ const FooterSection = () => {
                 </button>
               ))}
               <Link to="/importar-coche-alemania" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Cómo importar un coche de Alemania</Link>
+              <Link to="/cuanto-cuesta-importar-coche-alemania" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Cuánto cuesta importar un coche</Link>
               <Link to="/privacidad" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Política de privacidad</Link>
               <Link to="/aviso-legal" className="nav-link text-sm text-muted-foreground/60 hover:text-foreground transition-colors duration-500 w-fit pb-0.5">Aviso legal</Link>
             </div>

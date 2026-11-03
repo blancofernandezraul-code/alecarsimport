@@ -1,14 +1,18 @@
 # Alecars
 
-> Alecars importa coches de segunda mano desde Alemania para clientes en España, con servicio llave en mano: búsqueda, verificación, compra, transporte, trámites y entrega del coche listo para circular.
+> Alecars importa coches de segunda mano desde Alemania para clientes en España, con servicio llave en mano: búsqueda, peritaje profesional en Alemania, compra, transporte, trámites y entrega del coche listo para circular. Fundada en 2025.
 
 ## Qué hacemos
 - Búsqueda personalizada en el mercado alemán según marca, modelo, presupuesto y extras.
-- Verificación del historial y del estado técnico del coche antes de comprarlo.
+- Peritaje profesional antes de comprar: peritos mecánicos colaboradores en tres zonas de Alemania revisan el coche en persona y emiten un informe con fotos y su valoración. Si la unidad no es correcta, no se compra.
 - Negociación y compra directamente con el vendedor en Alemania, en alemán.
 - Transporte del coche hasta España.
-- Trámites en España: ITV, documentación, impuestos y matriculación.
+- Trámites en España (ITV, documentación, impuestos y matriculación), con un asesor fiscal especializado en importación de coches desde Alemania.
 - Entrega del coche listo para circular.
+- Garantía mecánica opcional para el coche, que se explica al cliente en la llamada.
+
+## Presupuesto
+Presupuesto por escrito con una única cifra cerrada que incluye todo: coche, transporte, impuestos, ITV, matriculación y servicio.
 
 ## Plazo
 De 2 a 6 semanas en total, de forma orientativa, desde que eliges el coche hasta la entrega.
@@ -25,5 +29,6 @@ Instagram: https://www.instagram.com/alecarses
 ## Páginas
 - Inicio: https://www.alecars.es/
 - Cómo importar un coche de Alemania: https://www.alecars.es/importar-coche-alemania
+- Cuánto cuesta importar un coche de Alemania: https://www.alecars.es/cuanto-cuesta-importar-coche-alemania
 - Aviso legal: https://www.alecars.es/aviso-legal
 - Privacidad: https://www.alecars.es/privacidad
