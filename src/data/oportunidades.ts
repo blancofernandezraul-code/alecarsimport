@@ -9,18 +9,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 
-// Fotos de los casos reales, usadas solo en los ejemplos de prueba (borrar junto con ellos)
-import bmwgris1 from "@/assets/bmwgris1.webp";
-import bmwgris2 from "@/assets/bmwgris2.webp";
-import bmwgris3 from "@/assets/bmwgris3.webp";
-import mercedes1 from "@/assets/mercedes1.webp";
-import mercedes2 from "@/assets/mercedes2.webp";
-import mercedes3 from "@/assets/mercedes3.webp";
-import bmw1 from "@/assets/bmw1.webp";
-import bmw2 from "@/assets/bmw2.webp";
-import bmw3 from "@/assets/bmw3.webp";
-import bmw4 from "@/assets/bmw4.webp";
-
 export const MARCAS = ["BMW", "Mercedes-Benz", "Audi", "Otras"] as const;
 export type Marca = (typeof MARCAS)[number];
 
@@ -45,6 +33,8 @@ export type Oportunidad = {
   extras: string[];
   /** Ahorro estimado frente a un coche equivalente en España, p. ej. "3.500 €" */
   ahorro?: string;
+  /** Precio final en España, todo incluido, p. ej. "18.900 €" */
+  precio?: string;
   /** Fotos (se rellenan solas desde la carpeta; solo los ejemplos las indican a mano) */
   fotos?: string[];
   /** Solo para la vista previa: se muestra la etiqueta "Ejemplo de prueba" */
@@ -65,48 +55,125 @@ const fotosDe = (id: string) =>
     .map((ruta) => ficheros[ruta]);
 
 const LISTA: Oportunidad[] = [
-  // ── EJEMPLOS DE PRUEBA con los casos reales (borrar cuando lleguen las unidades reales) ──
   {
-    id: "ejemplo-bmw-116i-urban",
-    marca: "BMW",
-    modelo: "Serie 1",
-    version: "116i Paquete Urban",
-    año: "2014",
-    km: "152.000 km",
-    combustible: "Gasolina",
-    destacado: "Importado con Paquete Urban y llantas Paquete M. Revisión completa e historial verificado.",
-    extras: ["Paquete Urban", "Llantas Paquete M"],
-    ahorro: "2.000 €",
-    fotos: [bmw1, bmw2, bmw3, bmw4],
-    ejemplo: true,
-  },
-  {
-    id: "ejemplo-mercedes-c200-t",
+    id: "mercedes-a45-amg-2021",
     marca: "Mercedes-Benz",
-    modelo: "Clase C",
-    version: "C 200 T",
-    año: "2015",
-    km: "149.000 km",
+    modelo: "Clase A",
+    version: "A 45 AMG 4MATIC+ Paquete Aerodinámico",
+    año: "02/2021",
+    km: "51.270 km",
     combustible: "Gasolina",
-    destacado: "Mantenimientos en casa Mercedes y parrilla AMG. Historial completo verificado.",
-    extras: ["Parrilla AMG", "Mantenimientos en Mercedes"],
-    ahorro: "3.000 €",
-    fotos: [mercedes1, mercedes2, mercedes3],
-    ejemplo: true,
+    cambio: "Automático",
+    potencia: "387 CV",
+    destacado:
+      "387 CV, tracción integral 4MATIC+ y paquete aerodinámico AMG. Mantenimiento siempre en concesionario Mercedes-Benz, con historial completo y revisión reciente.",
+    extras: [
+      "Paquete Aerodinámico AMG",
+      "Asientos deportivos AMG",
+      "Techo panorámico",
+      "Faros LED Multibeam",
+      "Paquete Noche AMG",
+      "Control de crucero adaptativo Distronic",
+      "Cámara de marcha atrás y paquete de aparcamiento",
+      "Llantas AMG de 19\"",
+      "Suspensión deportiva AMG",
+      "Cuadro digital y MBUX con control por voz",
+    ],
   },
   {
-    id: "ejemplo-bmw-116i-gris",
-    marca: "BMW",
-    modelo: "Serie 1",
-    version: "116i",
-    año: "2014",
-    km: "150.000 km",
+    id: "vw-golf-gti-2020",
+    marca: "Otras",
+    fabricante: "Volkswagen",
+    modelo: "Golf",
+    version: "GTI 2.0 TSI DSG",
+    año: "03/2020",
+    km: "124.000 km",
     combustible: "Gasolina",
-    destacado: "Cadena de distribución nueva y más de 2.500 € en mantenimientos recientes. Listo para muchos kilómetros.",
-    extras: ["Cadena de distribución nueva", "Mantenimientos recientes"],
-    ahorro: "2.500 €",
-    fotos: [bmwgris1, bmwgris2, bmwgris3],
-    ejemplo: true,
+    cambio: "Automático",
+    potencia: "245 CV",
+    destacado:
+      "Un solo propietario. GTI de 245 CV con cambio automático, bloqueo de diferencial delantero y cuadro digital Active Info Display.",
+    extras: [
+      "Bloqueo de diferencial delantero",
+      "Cuadro digital Active Info Display",
+      "Navegador Discover Media",
+      "Asientos deportivos calefactables",
+      "Climatronic bizona",
+      "Sensores de aparcamiento delante y detrás",
+      "Carga inalámbrica del móvil",
+      "Volante deportivo de cuero con levas",
+      "Llantas de 18\"",
+    ],
+  },
+  {
+    id: "vw-scirocco-2015",
+    marca: "Otras",
+    fabricante: "Volkswagen",
+    modelo: "Scirocco",
+    version: "2.0 TSI DSG",
+    año: "11/2015",
+    km: "140.823 km",
+    combustible: "Gasolina",
+    cambio: "Automático",
+    potencia: "220 CV",
+    destacado:
+      "220 CV y cambio DSG, con un equipamiento muy completo: techo solar panorámico, sonido Dynaudio con subwoofer y suspensión adaptativa DCC.",
+    extras: [
+      "Techo solar panorámico eléctrico",
+      "Sonido Dynaudio con subwoofer",
+      "Suspensión adaptativa DCC",
+      "Navegador Discover Media",
+      "Llantas de 19\" Lugano",
+      "Parachoques R-Line",
+      "Climatronic bizona",
+      "Sensores de aparcamiento delante y detrás",
+      "Control por voz",
+    ],
+  },
+  {
+    id: "audi-a1-2017",
+    marca: "Audi",
+    modelo: "A1",
+    version: "1.4 TFSI Paquete deportivo",
+    año: "06/2017",
+    km: "90.000 km",
+    combustible: "Gasolina",
+    cambio: "Manual",
+    potencia: "125 CV",
+    destacado:
+      "Muy bien mantenido y con la ITV alemana recién pasada. Versión con paquete deportivo, Audi Drive Select y asientos calefactables.",
+    extras: [
+      "Paquete deportivo con suspensión deportiva",
+      "Asientos deportivos calefactables",
+      "Audi Drive Select",
+      "Llantas de 17\" diamantadas",
+      "Volante deportivo de cuero multifunción",
+      "Climatizador automático",
+      "Sensores de aparcamiento traseros",
+      "Bluetooth y Audi music interface",
+    ],
+  },
+  {
+    id: "mercedes-a180-2017",
+    marca: "Mercedes-Benz",
+    modelo: "Clase A",
+    version: "A 180",
+    año: "08/2017",
+    km: "121.300 km",
+    combustible: "Gasolina",
+    cambio: "Manual",
+    potencia: "122 CV",
+    destacado:
+      "Se entrega con dos juegos de ruedas, de verano y de invierno, ambos con llantas de aleación. Navegador y asientos deportivos calefactables.",
+    extras: [
+      "Dos juegos de ruedas (verano e invierno) con llantas",
+      "Navegador",
+      "Asientos deportivos de cuero parcial calefactables",
+      "Sensores de aparcamiento delante y detrás",
+      "Volante deportivo de cuero multifunción",
+      "Control de crucero",
+      "Faros automáticos y sensor de lluvia",
+    ],
   },
   // Plantilla (copia el bloque, quita las barras // y rellena):
   // {

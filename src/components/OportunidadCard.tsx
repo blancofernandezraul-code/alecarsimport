@@ -78,6 +78,12 @@ export const OportunidadCard = ({
         </>
       )}
       <div className="mt-auto pt-6">
+        {o.precio && (
+          <p className="mb-3">
+            <span className="block text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Precio final en España, todo incluido</span>
+            <span className="font-serif text-3xl font-bold text-foreground">{o.precio}</span>
+          </p>
+        )}
         {o.ahorro && (
           <p className="inline-flex items-center gap-2 rounded border border-primary/20 bg-primary/5 px-3 py-2 text-sm mb-4">
             <PiggyBank className="w-4 h-4 text-primary" /> Ahorro vs. España:{" "}
@@ -172,6 +178,12 @@ export const OportunidadFicha = ({
               </>
             )}
 
+            {abierta.precio && (
+              <p className="mt-7">
+                <span className="block text-xs uppercase tracking-[0.15em] text-muted-foreground">Precio final en España, todo incluido</span>
+                <span className="block font-serif text-4xl font-bold">{abierta.precio}</span>
+              </p>
+            )}
             {abierta.ahorro && (
               <p className="inline-flex items-center gap-2 rounded border border-primary/20 bg-primary/5 px-4 py-2.5 text-sm mt-7">
                 <PiggyBank className="w-4 h-4 text-primary" /> Ahorro estimado frente a España:{" "}

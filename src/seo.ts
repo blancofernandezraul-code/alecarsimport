@@ -39,8 +39,6 @@ export const PAGES: PageMeta[] = [
     title: "Coches de Alemania disponibles: oportunidades | Alecars",
     description:
       "BMW, Mercedes-Benz, Audi y más: coches reales disponibles en Alemania seleccionados por Alecars. Mira fotos, extras y ahorro frente a España.",
-    // Quitar esta línea (y añadirla al sitemap) cuando haya coches publicados
-    index: false,
   },
   {
     path: "/privacidad",
